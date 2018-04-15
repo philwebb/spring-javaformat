@@ -4,26 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.spring.javaformat</groupId>
-		<artifactId>spring-javaformat-build</artifactId>
+		<artifactId>spring-javaformat-eclipse</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>spring-javaformat-eclipse</artifactId>
-	<packaging>pom</packaging>
+	<artifactId>io.spring.javaformat.eclipse.plugin</artifactId>
+	<packaging>eclipse-plugin</packaging>
 	<properties>
-		<main.basedir>${basedir}/../..</main.basedir>
+		<main.basedir>${basedir}/../../..</main.basedir>
 	</properties>
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>io.spring.javaformat.eclipse.plugin</module>
-	</modules>
 </project>
