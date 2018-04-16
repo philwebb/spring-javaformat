@@ -3,8 +3,8 @@
 <plugin>
 	<extension point="org.eclipse.jdt.core.javaFormatter">
 		<javaFormatter
-			class="org.springframework.ide.eclipse.jdt.formatter.internal.DefaultCodeFormatter"
-			id="org.springframework.ide.eclipse.jdt.formatter.javaformatter"
+			class="io.spring.javaformat.eclipse.plugin.SpringCodeFormatter"
+			id="io.spring.javaformat.eclipse.plugin.formatter"
 			name="Spring">
 		</javaFormatter>
 	</extension>
