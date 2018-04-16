@@ -5,3 +5,4 @@ target
 .settings
 .idea
 .flattened-pom.xml
+spring-javaformat-eclipse/io.spring.javaformat.eclipse.plugin/libs/
