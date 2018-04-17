@@ -16,7 +16,16 @@
 
 package io.spring.javaformat.eclipse.projectsettings;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests for {@link ProjectSettingsFile}.
@@ -25,8 +34,32 @@ import org.junit.Test;
  */
 public class ProjectSettingsFileTests {
 
+	@Rule
+	public TemporaryFolder temp = new TemporaryFolder();
+
 	@Test
-	public void test() {
+	public void fromFileAdaptsFile() throws Exception {
+		File file = this.temp.newFile();
+		writeText(file, "test");
+		ProjectSettingsFile projectSettingsFile = ProjectSettingsFile.fromFile(file);
+		assertThat(projectSettingsFile.getName()).isEqualTo(file.getName());
+		assertThat(projectSettingsFile.getContent())
+				.hasSameContentAs(new ByteArrayInputStream("test".getBytes()));
+	}
+
+	@Test
+	public void fromClasspathResourceAdaptsResource() throws Exception {
+		ProjectSettingsFile projectSettingsFile = ProjectSettingsFile
+				.fromClasspath(getClass(), "test.txt");
+		assertThat(projectSettingsFile.getName()).isEqualTo("test.txt");
+		assertThat(projectSettingsFile.getContent())
+				.hasSameContentAs(new ByteArrayInputStream("test".getBytes()));
+	}
+
+	private void writeText(File file, String s) throws FileNotFoundException {
+		try (PrintWriter writer = new PrintWriter(file)) {
+			writer.write(s);
+		}
 	}
 
 }

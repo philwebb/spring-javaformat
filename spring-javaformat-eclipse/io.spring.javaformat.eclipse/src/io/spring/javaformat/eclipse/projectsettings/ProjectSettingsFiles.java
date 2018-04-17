@@ -16,9 +16,17 @@
 
 package io.spring.javaformat.eclipse.projectsettings;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
@@ -28,17 +36,39 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public class ProjectSettingsFiles implements Iterable<ProjectSettingsFile> {
 
+	private final List<ProjectSettingsFile> files;
+
+	public ProjectSettingsFiles(Collection<ProjectSettingsFile> files) {
+		this.files = new ArrayList<>(files);
+	}
+
 	@Override
 	public Iterator<ProjectSettingsFile> iterator() {
-		return null;
+		return this.files.iterator();
 	}
 
 	/**
 	 * Apply the settings files to the given eclipse project.
 	 * @param project the project to apply the settings to
 	 * @param monitor a progress monitor
+	 * @throws IOException on IO error
+	 * @throws CoreException on eclipse file creation failure
 	 */
-	public void applyToProject(IProject project, IProgressMonitor monitor) {
+	public void applyToProject(IProject project, IProgressMonitor monitor)
+			throws IOException, CoreException {
+		for (ProjectSettingsFile file : this) {
+			IFile destination = project.getFile(".settings/" + file.getName());
+			if (destination.exists()) {
+				try {
+					destination.delete(true, monitor);
+				}
+				catch (CoreException ex) {
+				}
+			}
+			try (InputStream content = file.getContent()) {
+				destination.create(new BufferedInputStream(content), true, monitor);
+			}
+		}
 	}
 
 }

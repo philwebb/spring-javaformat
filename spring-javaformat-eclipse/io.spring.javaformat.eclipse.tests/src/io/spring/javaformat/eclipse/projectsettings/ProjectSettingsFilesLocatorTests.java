@@ -18,8 +18,6 @@ package io.spring.javaformat.eclipse.projectsettings;
 
 import org.junit.Test;
 
-import static org.junit.Assert.fail;
-
 /**
  * Tests for {@link ProjectSettingsFilesLocator}.
  *
@@ -28,8 +26,8 @@ import static org.junit.Assert.fail;
 public class ProjectSettingsFilesLocatorTests {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void locateSettingsFilesWhenNoFoldersShouldReturnDefault() {
+
 	}
 
 }

@@ -16,11 +16,57 @@
 
 package io.spring.javaformat.eclipse.projectsettings;
 
+import java.io.File;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Locates project settings files to be applied to projects.
  *
  * @author Phillip Webb
  */
 public class ProjectSettingsFilesLocator {
+
+	private static final String[] SOURCE_FOLDERS = { ".eclipse", ".eclipse" };
+
+	private static final String[] DEFAULT_FILES = { "org.eclipse.jdt.core.prefs",
+			"org.eclipse.jdt.ui.prefs" };
+
+	private final File[] searchFolders;
+
+	public ProjectSettingsFilesLocator(File... searchFolders) {
+		this.searchFolders = searchFolders;
+	}
+
+	public ProjectSettingsFiles locateSettingsFiles() {
+		Map<String, ProjectSettingsFile> files = new LinkedHashMap<>();
+		for (File searchFolder : this.searchFolders) {
+			for (String sourceFolder : SOURCE_FOLDERS) {
+				add(files, new File(searchFolder, sourceFolder));
+			}
+		}
+		for (String file : DEFAULT_FILES) {
+			putIfAbsent(files, ProjectSettingsFile.fromClasspath(getClass(), file));
+		}
+		return new ProjectSettingsFiles(files.values());
+	}
+
+	private void add(Map<String, ProjectSettingsFile> files, File folder) {
+		if (folder.exists() && folder.isDirectory()) {
+			for (File file : folder.listFiles(this::isNotDot)) {
+				putIfAbsent(files, ProjectSettingsFile.fromFile(file));
+			}
+		}
+	}
+
+	private boolean isNotDot(File file) {
+		String name = file.getName();
+		return !".".equals(name);
+	}
+
+	private void putIfAbsent(Map<String, ProjectSettingsFile> files,
+			ProjectSettingsFile candidate) {
+		files.putIfAbsent(candidate.getName(), candidate);
+	}
 
 }

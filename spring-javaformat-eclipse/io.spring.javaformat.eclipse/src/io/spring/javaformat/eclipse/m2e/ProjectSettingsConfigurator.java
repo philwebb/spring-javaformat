@@ -62,19 +62,6 @@ public class ProjectSettingsConfigurator extends AbstractProjectConfigurator {
 	// private void copyToProject(ProjectConfigurationRequest request,
 	// IProgressMonitor monitor, List<ProjectSettingsFile> settingsFiles)
 	// throws Exception {
-	// for (ProjectSettingsFile settingsFile : settingsFiles) {
-	// IFile destination = request.getProject()
-	// .getFile(".settings/" + settingsFile.getName());
-	// if (destination.exists()) {
-	// try {
-	// destination.delete(true, monitor);
-	// }
-	// catch (CoreException ex) {
-	// }
-	// }
-	// try (InputStream content = settingsFile.getContent()) {
-	// destination.create(new BufferedInputStream(content), true, monitor);
-	// }
 	// }
 	//
 	// }

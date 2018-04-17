@@ -37,22 +37,42 @@ final class ProjectSettingsFile {
 		this.contentSupplier = contentSupplier;
 	}
 
+	/**
+	 * Return the name of the settings file not include any path elements.
+	 * @return the name
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * Return a new {@link InputStream} that can be used to access the content of the
+	 * file.
+	 * @return the file contents
+	 * @throws IOException if the file cannot be opened
+	 */
 	public InputStream getContent() throws IOException {
 		return this.contentSupplier.getContent();
 	}
 
+	/**
+	 * Create a new {@link ProjectSettingsFile} instance from the given {@code File}.
+	 * @param file the source file
+	 * @return a new {@link ProjectSettingsFile}
+	 */
 	public static ProjectSettingsFile fromFile(File file) {
 		return new ProjectSettingsFile(file.getName(), () -> new FileInputStream(file));
 	}
 
-	public static ProjectSettingsFile fromClasspathResource(String name,
-			String resourceLocation) {
-		return new ProjectSettingsFile(name,
-				() -> ProjectSettingsFile.class.getResourceAsStream(resourceLocation));
+	/**
+	 * Create a new {@link ProjectSettingsFile} instance from a classpath resource.
+	 * @param sourceClass the source class used to load the resource
+	 * @param name the name of the resource to load
+	 * @return a new {@link ProjectSettingsFile}
+	 */
+	public static ProjectSettingsFile fromClasspath(Class<?> sourceClass,
+			String name) {
+		return new ProjectSettingsFile(name, () -> sourceClass.getResourceAsStream(name));
 	}
 
 	@FunctionalInterface
