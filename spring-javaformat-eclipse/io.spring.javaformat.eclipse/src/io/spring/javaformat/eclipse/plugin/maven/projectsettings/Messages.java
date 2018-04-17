@@ -25,7 +25,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public final class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "io.spring.javaformat.eclipse.plugin.maven.projectsettings"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "io.spring.javaformat.eclipse.plugin.maven.projectsettings.messages"; //$NON-NLS-1$
 
 	/**
 	 * General error message.
