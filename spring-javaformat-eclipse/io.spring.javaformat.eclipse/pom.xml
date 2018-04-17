@@ -8,7 +8,7 @@
 		<artifactId>spring-javaformat-eclipse</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>io.spring.javaformat.eclipse.plugin</artifactId>
+	<artifactId>io.spring.javaformat.eclipse</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<properties>
 		<main.basedir>${basedir}/../../..</main.basedir>
@@ -64,7 +64,7 @@
 						<configuration>
 							<includeScope>runtime</includeScope>
 							<stripVersion>true</stripVersion>
-							<outputDirectory>libs</outputDirectory>
+							<outputDirectory>lib</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

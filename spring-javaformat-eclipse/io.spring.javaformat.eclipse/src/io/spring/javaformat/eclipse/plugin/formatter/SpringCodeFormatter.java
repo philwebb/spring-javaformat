@@ -16,11 +16,10 @@
 
 package io.spring.javaformat.eclipse.plugin.formatter;
 
+import io.spring.javaformat.formatter.Formatter;
 import org.eclipse.jdt.core.formatter.CodeFormatter;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.text.edits.TextEdit;
-
-import io.spring.javaformat.formatter.Formatter;
 
 /**
  * Eclipse {@link CodeFormatter} for Spring formatting.
@@ -32,14 +31,17 @@ public class SpringCodeFormatter extends CodeFormatter {
 	private Formatter delegate = new Formatter();
 
 	@Override
-	public TextEdit format(int kind, String source, int offset, int length, int indentationLevel,
-			String lineSeparator) {
-		return delegate.format(kind, source, offset, length, indentationLevel, lineSeparator);
+	public TextEdit format(int kind, String source, int offset, int length,
+			int indentationLevel, String lineSeparator) {
+		return this.delegate.format(kind, source, offset, length, indentationLevel,
+				lineSeparator);
 	}
 
 	@Override
-	public TextEdit format(int kind, String source, IRegion[] regions, int indentationLevel, String lineSeparator) {
-		return delegate.format(kind, source, regions, indentationLevel, lineSeparator);
+	public TextEdit format(int kind, String source, IRegion[] regions,
+			int indentationLevel, String lineSeparator) {
+		return this.delegate.format(kind, source, regions, indentationLevel,
+				lineSeparator);
 	}
 
 }
