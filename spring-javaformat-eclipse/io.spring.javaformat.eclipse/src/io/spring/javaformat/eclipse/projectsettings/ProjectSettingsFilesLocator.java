@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2016 the original author or authors.
+ * Copyright 2012-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.eclipse.plugin;
+package io.spring.javaformat.eclipse.projectsettings;
 
 /**
- * Details for the plugin.
+ * Locates project settings files to be applied to projects.
  *
  * @author Phillip Webb
  */
-public final class Plugin {
-
-	/**
-	 * The ID of the plugin.
-	 */
-	public static final String ID = "io.spring.javaformat.eclipse.plugin"; //$NON-NLS-1$
-
-	private Plugin() {
-	}
+public class ProjectSettingsFilesLocator {
 
 }

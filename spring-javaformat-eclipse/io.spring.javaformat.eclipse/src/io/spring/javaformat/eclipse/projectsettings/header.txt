@@ -13,27 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package io.spring.javaformat.eclipse.plugin.maven.project;
-
-import io.spring.javaformat.eclipse.plugin.maven.projectsettings.Messages;
-import org.eclipse.osgi.util.NLS;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * Tests for {@link Messages}.
- *
- * @author Phillip Webb
- */
-public class MessagesTest {
-
-	@Test
-	public void bindHasCorrectMessage() {
-		String message = NLS.bind(Messages.springFormatProjectSettingsError, "test.txt");
-		assertThat(message).isEqualTo(
-				"Error importing spring-javaformat project specific settings; test.txt");
-	}
-
-}

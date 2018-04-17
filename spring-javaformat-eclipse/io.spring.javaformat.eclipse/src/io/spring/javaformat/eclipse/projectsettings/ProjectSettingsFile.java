@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.eclipse.plugin.maven.projectsettings;
+package io.spring.javaformat.eclipse.projectsettings;
 
 import java.io.File;
 import java.io.FileInputStream;

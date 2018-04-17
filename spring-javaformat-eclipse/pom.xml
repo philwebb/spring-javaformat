@@ -68,5 +68,6 @@
 		<module>io.spring.javaformat.eclipse</module>
 		<module>io.spring.javaformat.eclipse.tests</module>
 		<module>io.spring.javaformat.eclipse.feature</module>
+		<module>io.spring.javaformat.eclipse.site</module>
 	</modules>
 </project>

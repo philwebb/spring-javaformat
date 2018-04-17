@@ -175,8 +175,12 @@
 					<configuration>
 						<useUIHarness>true</useUIHarness>
 						<includes>
+							<include>**/*Tests.java</include>
 							<include>**/*Test.java</include>
 						</includes>
+						<excludes>
+							<exclude>**/Abstract*.java</exclude>
+						</excludes>
 						<argLine>${ui.test.vmargs}</argLine>
 						<forkedProcessTimeoutInSeconds>7200</forkedProcessTimeoutInSeconds>
 					</configuration>

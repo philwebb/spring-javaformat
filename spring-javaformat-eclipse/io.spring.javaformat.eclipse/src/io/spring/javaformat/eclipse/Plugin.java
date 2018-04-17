@@ -14,29 +14,21 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.eclipse.plugin.maven.projectsettings;
-
-import org.eclipse.osgi.util.NLS;
+package io.spring.javaformat.eclipse;
 
 /**
- * NLS messages for the plugin.
+ * Details for the plugin.
  *
  * @author Phillip Webb
  */
-public final class Messages extends NLS {
-
-	private static final String BUNDLE_NAME = "io.spring.javaformat.eclipse.plugin.maven.projectsettings.messages"; //$NON-NLS-1$
+public final class Plugin {
 
 	/**
-	 * General error message.
+	 * The ID of the plugin.
 	 */
-	public static String springFormatProjectSettingsError;
+	public static final String ID = "io.spring.javaformat.eclipse"; //$NON-NLS-1$
 
-	static {
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
-
-	private Messages() {
+	private Plugin() {
 	}
 
 }
