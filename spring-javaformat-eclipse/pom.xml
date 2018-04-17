@@ -24,7 +24,5 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>io.spring.javaformat.eclipse</module>
-		<module>io.spring.javaformat.eclipse.tests</module>
 	</modules>
 </project>
