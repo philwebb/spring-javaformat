@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.eclipse.plugin;
+package io.spring.javaformat.eclipse.plugin.formatter;
 
 import org.eclipse.jdt.core.formatter.CodeFormatter;
 import org.eclipse.jface.text.IRegion;

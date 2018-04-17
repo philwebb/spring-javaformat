@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.jdt.core.javaFormatter">
+		<javaFormatter
+			class="io.spring.javaformat.eclipse.plugin.formatter.SpringCodeFormatter"
+			id="io.spring.javaformat.eclipse.plugin.formatter"
+			name="Spring">
+		</javaFormatter>
+	</extension>
+ <extension
+       point="org.eclipse.m2e.core.projectConfigurators">
+    <configurator
+          class="io.spring.javaformat.eclipse.plugin.maven.projectsettings.ProjectSettingsConfigurator"
+          id="io.spring.javaformat.eclipse.plugin.maven.configurator"
+          runsAfter="org.eclipse.m2e.jdt.javaConfigurator">
+    </configurator>
+ </extension>
+ <extension
+       point="org.eclipse.m2e.core.lifecycleMappingMetadataSource">
+ </extension>
+</plugin>
