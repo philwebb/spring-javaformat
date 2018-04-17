@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.spring.javaformat</groupId>
 		<artifactId>spring-javaformat</artifactId>
-		<version>${revision}</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>spring-javaformat-formatter</artifactId>
 	<properties>
@@ -16,12 +16,12 @@
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
 			<artifactId>spring-javaformat-formatter-eclipse</artifactId>
-			<version>${revision}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
 			<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
-			<version>${revision}</version>
+			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

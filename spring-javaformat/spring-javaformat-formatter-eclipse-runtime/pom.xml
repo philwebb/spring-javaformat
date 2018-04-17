@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.spring.javaformat</groupId>
 		<artifactId>spring-javaformat</artifactId>
-		<version>${revision}</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
 	<packaging>eclipse-plugin</packaging>
@@ -51,7 +51,7 @@
 						<configuration>
 							<target>
 								<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
-								<propertyregex property="base-revision" input="${revision}"
+								<propertyregex property="base-revision" input="${project.version}"
 									regexp="([\d\.]+).*" replace="\1" />
 								<replaceregexp file="${basedir}/META-INF/MANIFEST.MF"
 									match="Bundle-Version:(.*).qualifier" byline="true"
@@ -179,7 +179,7 @@
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
 			<artifactId>spring-javaformat-formatter-eclipse-rewriter</artifactId>
-			<version>${revision}</version>
+			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.spring.javaformat</groupId>
 		<artifactId>spring-javaformat-eclipse</artifactId>
-		<version>${revision}</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>io.spring.javaformat.eclipse</artifactId>
 	<packaging>eclipse-plugin</packaging>
@@ -18,7 +18,7 @@
 			<groupId>io.spring.javaformat</groupId>
 			<artifactId>spring-javaformat-formatter</artifactId>
 			<scope>runtime</scope>
-			<version>${revision}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
