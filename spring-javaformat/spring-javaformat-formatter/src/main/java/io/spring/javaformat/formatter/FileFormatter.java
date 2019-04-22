@@ -39,8 +39,8 @@ public class FileFormatter {
 		this(new Formatter());
 	}
 
-	public FileFormatter(FormatterOption... options) {
-		this(new Formatter(options));
+	public FileFormatter(FormatterStyle style, FormatterOption... options) {
+		this(new Formatter(style, options));
 	}
 
 	public FileFormatter(Formatter formatter) {

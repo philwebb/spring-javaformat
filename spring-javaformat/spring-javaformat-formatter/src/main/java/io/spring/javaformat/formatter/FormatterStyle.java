@@ -17,15 +17,31 @@
 package io.spring.javaformat.formatter;
 
 /**
- * Options that can be used to configure a {@link Formatter}.
+ * Formatting styles that can be used.
  *
  * @author Phillip Webb
+ * @see FormatterOption
  */
-public enum FormatterOption {
+public enum FormatterStyle {
 
 	/**
-	 * Show Eclipse NLS warnings.
+	 * Use standard formatting.
 	 */
-	SHOW_NLS_WARNINGS,
+	STANDARD("formatter.prefs"),
+
+	/**
+	 * Use wide formatting.
+	 */
+	WIDE("formatter.prefs", "widescreen-override.prefs");
+
+	private final String[] preferenceFiles;
+
+	private FormatterStyle(String... preferenceFiles) {
+		this.preferenceFiles = preferenceFiles;
+	}
+
+	String[] getPreferenceFiles() {
+		return this.preferenceFiles;
+	}
 
 }

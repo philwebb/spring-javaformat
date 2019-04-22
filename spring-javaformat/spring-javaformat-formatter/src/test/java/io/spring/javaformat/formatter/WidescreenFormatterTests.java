@@ -55,7 +55,7 @@ public class WidescreenFormatterTests extends AbstractFormatterTests {
 
 	private String format(String sourceContent) throws Exception {
 		IDocument document = new Document(sourceContent);
-		TextEdit textEdit = new Formatter(FormatterOption.WIDESCREEN)
+		TextEdit textEdit = new Formatter(FormatterStyle.WIDE)
 				.format(sourceContent);
 		textEdit.apply(document);
 		return document.get();

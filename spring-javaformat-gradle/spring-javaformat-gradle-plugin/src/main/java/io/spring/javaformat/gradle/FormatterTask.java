@@ -17,6 +17,7 @@
 package io.spring.javaformat.gradle;
 
 import java.nio.charset.Charset;
+import java.time.format.FormatStyle;
 import java.util.stream.Stream;
 
 import org.gradle.api.tasks.Input;
@@ -34,6 +35,8 @@ import io.spring.javaformat.formatter.FileFormatter;
 abstract class FormatterTask extends SourceTask {
 
 	private String encoding;
+
+	private FormatStyle style = FormatStyle.STANDARD;
 
 	/**
 	 * Get the file encoding in use.
@@ -54,11 +57,29 @@ abstract class FormatterTask extends SourceTask {
 	}
 
 	/**
+	 * Get the format mode in use.
+	 * @return the format mode
+	 */
+	@Input
+	@Optional
+	public FormatMode getMode() {
+		return this.mode;
+	}
+
+	/**
+	 * Set the format mode to use.
+	 * @param mode the format mode
+	 */
+	public void setMode(FormatMode mode) {
+		this.mode = mode;
+	}
+
+	/**
 	 * Format the source files and provide a {@link Stream} of {@link FileEdit} instances.
 	 * @return the file edits
 	 */
 	protected final Stream<FileEdit> formatFiles() {
-		FileFormatter formatter = new FileFormatter();
+		FileFormatter formatter = new FileFormatter(this.mode.getOptions());
 		Charset encoding = (getEncoding() != null ? Charset.forName(getEncoding())
 				: Charset.defaultCharset());
 		return formatter.formatFiles(getSource().getFiles(), encoding);

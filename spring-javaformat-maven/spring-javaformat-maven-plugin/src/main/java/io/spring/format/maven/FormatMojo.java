@@ -34,6 +34,9 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
 
+import io.spring.javaformat.formatter.FileFormatter;
+import io.spring.javaformat.formatter.FormatterStyle;
+
 /**
  * Base class for formatter Mojo.
  *
@@ -86,6 +89,9 @@ public abstract class FormatMojo extends AbstractMojo {
 
 	@Parameter(property = "spring-javaformat.includeGeneratedSource", defaultValue = "false")
 	private boolean includeGeneratedSource;
+
+	@Parameter(property = "spring-javaformat.style", defaultValue = "STANDARD")
+	private FormatterStyle style = FormatterStyle.STANDARD;
 
 	@Override
 	public final void execute() throws MojoExecutionException, MojoFailureException {
@@ -157,5 +163,13 @@ public abstract class FormatMojo extends AbstractMojo {
 	 */
 	protected abstract void execute(List<File> files, Charset encoding)
 			throws MojoExecutionException, MojoFailureException;
+
+	/**
+	 * Return a {@link FileFormatter} that can be used to format or validate files.
+	 * @return the formatter
+	 */
+	protected final FileFormatter getFileFormatter() {
+		return new FileFormatter(this.style);
+	}
 
 }

@@ -28,7 +28,6 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import io.spring.javaformat.formatter.FileEdit;
-import io.spring.javaformat.formatter.FileFormatter;
 
 /**
  * Validates that source formatting matches the required style.
@@ -51,8 +50,7 @@ public class ValidateMojo extends FormatMojo {
 			getLog().debug("skipping validation as per configuration.");
 			return;
 		}
-		FileFormatter formatter = new FileFormatter();
-		List<File> problems = formatter.formatFiles(files, encoding)
+		List<File> problems = getFileFormatter().formatFiles(files, encoding)
 				.filter(FileEdit::hasEdits).map(FileEdit::getFile)
 				.collect(Collectors.toList());
 		if (!problems.isEmpty()) {

@@ -58,24 +58,28 @@ public class Formatter extends CodeFormatter {
 	 */
 	private static final String DEFAULT_LINE_SEPARATOR = null;
 
-	private static final String[] DEFAULT_PREFERENCE_FILES = { "formatter.prefs" };
-
-	private static final String[] WIDESCREEN_PREFERENCE_FILES = { "formatter.prefs",
-			"widescreen-override.prefs" };
-
 	private final Set<FormatterOption> options;
 
 	private final CodeFormatter delegate;
 
 	/**
 	 * Create a new formatter instance.
+	 */
+	public Formatter() {
+		this(FormatterStyle.STANDARD);
+	}
+
+	/**
+	 * Create a new formatter instance.
+	 * @param style the formatting style
 	 * @param options formatter options
 	 */
-	public Formatter(FormatterOption... options) {
+	public Formatter(FormatterStyle style, FormatterOption... options) {
+		if (style == null) {
+			style = FormatterStyle.STANDARD;
+		}
 		this.options = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(options)));
-		boolean widescreen = this.options.contains(FormatterOption.WIDESCREEN);
-		this.delegate = new DelegateCodeFormatter(
-				widescreen ? WIDESCREEN_PREFERENCE_FILES : DEFAULT_PREFERENCE_FILES);
+		this.delegate = new DelegateCodeFormatter(style.getPreferenceFiles());
 	}
 
 	/**
