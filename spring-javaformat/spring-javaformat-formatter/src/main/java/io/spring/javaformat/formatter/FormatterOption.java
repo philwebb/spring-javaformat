@@ -26,6 +26,11 @@ public enum FormatterOption {
 	/**
 	 * Show Eclipse NLS warnings.
 	 */
-	SHOW_NLS_WARNINGS
+	SHOW_NLS_WARNINGS,
+
+	/**
+	 * User widescreen formatting.
+	 */
+	WIDESCREEN
 
 }

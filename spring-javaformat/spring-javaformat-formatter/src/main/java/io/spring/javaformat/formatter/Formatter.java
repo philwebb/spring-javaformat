@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -57,16 +58,14 @@ public class Formatter extends CodeFormatter {
 	 */
 	private static final String DEFAULT_LINE_SEPARATOR = null;
 
+	private static final String[] DEFAULT_PREFERENCE_FILES = { "formatter.prefs" };
+
+	private static final String[] WIDESCREEN_PREFERENCE_FILES = { "formatter.prefs",
+			"widescreen-override.prefs" };
+
 	private final Set<FormatterOption> options;
 
-	private CodeFormatter delegate = new DelegateCodeFormatter();
-
-	/**
-	 * Create a new formatter instance.
-	 */
-	public Formatter() {
-		this.options = Collections.emptySet();
-	}
+	private final CodeFormatter delegate;
 
 	/**
 	 * Create a new formatter instance.
@@ -74,6 +73,9 @@ public class Formatter extends CodeFormatter {
 	 */
 	public Formatter(FormatterOption... options) {
 		this.options = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(options)));
+		boolean widescreen = this.options.contains(FormatterOption.WIDESCREEN);
+		this.delegate = new DelegateCodeFormatter(
+				widescreen ? WIDESCREEN_PREFERENCE_FILES : DEFAULT_PREFERENCE_FILES);
 	}
 
 	/**
@@ -169,30 +171,43 @@ public class Formatter extends CodeFormatter {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static class DelegateCodeFormatter extends ExtendedCodeFormatter {
 
-		static Map<String, String> OPTIONS;
+		private Map<String, String> options;
 
-		static {
+		DelegateCodeFormatter(String... prefs) {
+			this(loadOptions(prefs));
+			Preparators.forEach(this::addPreparator);
+		}
+
+		private DelegateCodeFormatter(Map<String, String> options) {
+			super(options);
+			this.options = options;
+		}
+
+		@Override
+		public void setOptions(Map<String, String> options) {
+			super.setOptions(this.options);
+		}
+
+		private static Map<String, String> loadOptions(String... preferenceFiles) {
+			Map<String, String> options = new LinkedHashMap<String, String>();
+			for (String preferenceFile : preferenceFiles) {
+				options.putAll(loadProperties(preferenceFile));
+			}
+			return Collections.unmodifiableMap(options);
+		}
+
+		private static Map<String, String> loadProperties(String preferenceFile) {
 			try {
 				Properties properties = new Properties();
 				try (InputStream inputStream = Formatter.class
-						.getResourceAsStream("formatter.prefs")) {
+						.getResourceAsStream(preferenceFile)) {
 					properties.load(inputStream);
-					OPTIONS = (Map) Collections.unmodifiableMap(properties);
+					return (Map) properties;
 				}
 			}
 			catch (IOException ex) {
 				throw new IllegalStateException(ex);
 			}
-		}
-
-		DelegateCodeFormatter() {
-			super(OPTIONS);
-			Preparators.forEach(this::addPreparator);
-		}
-
-		@Override
-		public void setOptions(Map<String, String> options) {
-			super.setOptions(OPTIONS);
 		}
 
 	}
