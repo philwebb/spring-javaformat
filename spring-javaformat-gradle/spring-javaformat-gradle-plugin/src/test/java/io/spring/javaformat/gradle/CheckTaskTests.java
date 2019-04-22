@@ -46,6 +46,15 @@ public class CheckTaskTests {
 	}
 
 	@Test
+	public void checkOkWide() throws IOException {
+		BuildResult result = this.gradleBuild.source("src/test/resources/check-ok-wide")
+				.build("check");
+		assertThat(result.task(":checkFormatMain").getOutcome())
+				.isEqualTo(TaskOutcome.SUCCESS);
+	}
+
+
+	@Test
 	public void checkBad() throws IOException {
 		BuildResult result = this.gradleBuild.source("src/test/resources/check-bad")
 				.buildAndFail("check");

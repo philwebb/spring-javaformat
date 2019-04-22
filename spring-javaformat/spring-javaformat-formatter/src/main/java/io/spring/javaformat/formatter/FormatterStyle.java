@@ -36,7 +36,7 @@ public enum FormatterStyle {
 
 	private final String[] preferenceFiles;
 
-	private FormatterStyle(String... preferenceFiles) {
+	FormatterStyle(String... preferenceFiles) {
 		this.preferenceFiles = preferenceFiles;
 	}
 
