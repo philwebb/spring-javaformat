@@ -36,7 +36,7 @@ abstract class FormatterTask extends SourceTask {
 
 	private String encoding;
 
-	private FormatterStyle style = FormatterStyle.STANDARD;
+	private FormatterStyle style = FormatterStyle.COMPACT;
 
 	/**
 	 * Get the file encoding in use.

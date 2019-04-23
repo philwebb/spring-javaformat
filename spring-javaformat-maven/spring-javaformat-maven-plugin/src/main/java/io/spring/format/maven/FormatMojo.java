@@ -90,8 +90,8 @@ public abstract class FormatMojo extends AbstractMojo {
 	@Parameter(property = "spring-javaformat.includeGeneratedSource", defaultValue = "false")
 	private boolean includeGeneratedSource;
 
-	@Parameter(property = "spring-javaformat.style", defaultValue = "STANDARD")
-	private FormatterStyle style = FormatterStyle.STANDARD;
+	@Parameter(property = "spring-javaformat.style", defaultValue = "COMPACT")
+	private FormatterStyle style = FormatterStyle.COMPACT;
 
 	@Override
 	public final void execute() throws MojoExecutionException, MojoFailureException {

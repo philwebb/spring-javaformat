@@ -66,7 +66,7 @@ public class Formatter extends CodeFormatter {
 	 * Create a new formatter instance.
 	 */
 	public Formatter() {
-		this(FormatterStyle.STANDARD);
+		this(FormatterStyle.COMPACT);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class Formatter extends CodeFormatter {
 	 */
 	public Formatter(FormatterStyle style, FormatterOption... options) {
 		if (style == null) {
-			style = FormatterStyle.STANDARD;
+			style = FormatterStyle.COMPACT;
 		}
 		this.options = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(options)));
 		this.delegate = new DelegateCodeFormatter(style.getPreferenceFiles());

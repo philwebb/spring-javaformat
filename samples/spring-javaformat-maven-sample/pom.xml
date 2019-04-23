@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-javaformat.version>0.0.9</spring-javaformat.version>
+		<spring-javaformat.version>0.0.9-SNAPSHOT</spring-javaformat.version>
 	</properties>
 	<build>
 		<plugins>
@@ -16,6 +16,9 @@
 				<groupId>io.spring.javaformat</groupId>
 				<artifactId>spring-javaformat-maven-plugin</artifactId>
 				<version>${spring-javaformat.version}</version>
+				<configuration>
+					<style>WIDE</style>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

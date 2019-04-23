@@ -17,9 +17,11 @@
 package io.spring.javaformat.eclipse.m2e;
 
 import java.io.File;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -30,6 +32,7 @@ import io.spring.javaformat.eclipse.Executor;
 import io.spring.javaformat.eclipse.Messages;
 import io.spring.javaformat.eclipse.projectsettings.ProjectSettingsFiles;
 import io.spring.javaformat.eclipse.projectsettings.ProjectSettingsFilesLocator;
+import io.spring.javaformat.formatter.FormatterStyle;
 
 /**
  * Configurator to apply project specific settings.
@@ -42,6 +45,11 @@ public class ProjectSettingsConfigurator extends AbstractProjectConfigurator {
 	public void configure(ProjectConfigurationRequest request, IProgressMonitor monitor)
 			throws CoreException {
 		new Executor(Messages.springFormatSettingsImportError).run(() -> {
+		    List<MojoExecution> mojoExecutions = getMojoExecutions(request, monitor);
+		    for (MojoExecution mojoExecution : mojoExecutions) {
+			FormatterStyle value = getParameterValue(request.getMavenProject(), "style", FormatterStyle.class, mojoExecution, monitor);
+			System.out.println(value);
+		    }
 			List<File> searchFolders = getSearchFolders(request);
 			ProjectSettingsFiles settingsFiles = new ProjectSettingsFilesLocator(
 					searchFolders).locateSettingsFiles();

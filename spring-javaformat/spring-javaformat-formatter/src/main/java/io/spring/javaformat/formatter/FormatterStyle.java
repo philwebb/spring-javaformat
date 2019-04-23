@@ -27,7 +27,7 @@ public enum FormatterStyle {
 	/**
 	 * Use standard formatting.
 	 */
-	STANDARD("formatter.prefs"),
+	COMPACT("formatter.prefs"),
 
 	/**
 	 * Use wide formatting.
