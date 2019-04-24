@@ -36,8 +36,6 @@ abstract class FormatterTask extends SourceTask {
 
 	private String encoding;
 
-	private FormatterStyle style = FormatterStyle.COMPACT;
-
 	/**
 	 * Get the file encoding in use.
 	 * @return the encoding the file encoding
@@ -57,29 +55,13 @@ abstract class FormatterTask extends SourceTask {
 	}
 
 	/**
-	 * Get the format style in use.
-	 * @return the format style
-	 */
-	@Input
-	@Optional
-	public FormatterStyle getStyle() {
-		return this.style;
-	}
-
-	/**
-	 * Set the format style to use.
-	 * @param style the format style
-	 */
-	public void setStyle(FormatterStyle style) {
-		this.style = style;
-	}
-
-	/**
 	 * Format the source files and provide a {@link Stream} of {@link FileEdit} instances.
 	 * @return the file edits
 	 */
 	protected final Stream<FileEdit> formatFiles() {
-		FileFormatter formatter = new FileFormatter(this.style);
+		FormatterStyle style = getProject().getExtensions()
+				.getByType(SpringJavaFormatExtension.class).getStyle();
+		FileFormatter formatter = new FileFormatter(style);
 		Charset encoding = (getEncoding() != null ? Charset.forName(getEncoding())
 				: Charset.defaultCharset());
 		return formatter.formatFiles(getSource().getFiles(), encoding);

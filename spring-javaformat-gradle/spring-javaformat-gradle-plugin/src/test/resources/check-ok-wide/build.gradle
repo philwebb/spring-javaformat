@@ -9,6 +9,6 @@ apply plugin: 'io.spring.javaformat'
 
 sourceCompatibility = 1.8
 
-checkFormatMain {
+javaformat {
 	style = "wide"
 }

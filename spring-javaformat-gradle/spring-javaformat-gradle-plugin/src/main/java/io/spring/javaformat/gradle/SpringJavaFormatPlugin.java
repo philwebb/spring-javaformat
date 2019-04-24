@@ -35,6 +35,8 @@ public class SpringJavaFormatPlugin implements Plugin<Project> {
 	@Override
 	public void apply(Project project) {
 		this.project = project;
+		project.getExtensions().create("javaformat", SpringJavaFormatExtension.class);
+		project.getTasks().create(FormatSettingsTask.NAME, FormatSettingsTask.class);
 		addSourceTasks();
 	}
 
@@ -58,7 +60,8 @@ public class SpringJavaFormatPlugin implements Plugin<Project> {
 		checkAll.dependsOn(checkTask);
 		FormatTask formatSourceSet = addSourceTask(sourceSet, FormatTask.class,
 				FormatTask.NAME, FormatTask.DESCRIPTION);
-		formatSourceSet.conventionMapping("encoding", () -> "UTF-8");
+		formatSourceSet.conventionMapping("encoding", () -> this.project.getExtensions()
+				.getByType(SpringJavaFormatExtension.class).getEncoding());
 		formatAll.dependsOn(formatSourceSet);
 	}
 

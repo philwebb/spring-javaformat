@@ -90,7 +90,7 @@ public final class RefreshProjectSettingsListeners {
 	}
 
 	/**
-	 * Event Listener to triger an update after a project import or gradle nature change.
+	 * Event Listener to trigger an update after a project import or gradle nature change.
 	 */
 	private static class ProjectListener implements EventListener {
 
