@@ -40,8 +40,8 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.xml.sax.InputSource;
 
+import io.spring.javaformat.eclipse.jdt.internal.formatter.Preparator;
 import io.spring.javaformat.formatter.Formatter;
-import io.spring.javaformat.formatter.eclipse.Preparator;
 import io.spring.javaformat.org.eclipse.jdt.core.formatter.CodeFormatter;
 
 /**
