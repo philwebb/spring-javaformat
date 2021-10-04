@@ -8,7 +8,7 @@
 		<artifactId>spring-javaformat</artifactId>
 		<version>0.0.29-SNAPSHOT</version>
 	</parent>
-	<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
+	<artifactId>spring-javaformat-formatter-eclipse-runtime-jdk8</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<name>Spring JavaFormat Eclipse Runtime</name>
 	<properties>

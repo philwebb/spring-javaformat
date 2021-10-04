@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
-			<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
+			<artifactId>spring-javaformat-formatter-eclipse-runtime-jdk8</artifactId>
 			<version>0.0.29-SNAPSHOT</version>
 			<optional>true</optional>
 		</dependency>
@@ -48,7 +48,7 @@
 						<configuration>
 							<filters>
 								<filter>
-									<artifact>io.spring.javaformat:spring-javaformat-formatter-eclipse-runtime</artifact>
+									<artifact>io.spring.javaformat:spring-javaformat-formatter-eclipse-runtime-jdk8</artifact>
 									<includes>
 										<include>org/eclipse/jdt/**</include>
 									</includes>
