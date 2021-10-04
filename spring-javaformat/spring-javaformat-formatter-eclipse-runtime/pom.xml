@@ -21,6 +21,13 @@
 			<url>https://www.eclipse.org/legal/epl-v10.html</url>
 		</license>
 	</licenses>
+	<repositories>
+		<repository>
+			<id>eclipse-jdk8</id>
+			<layout>p2</layout>
+			<url>${eclipse.jdk8.repository}</url>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
