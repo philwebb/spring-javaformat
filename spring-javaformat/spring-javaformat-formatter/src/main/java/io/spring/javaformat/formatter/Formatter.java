@@ -37,7 +37,7 @@ import io.spring.javaformat.formatter.preparator.Preparators;
  *
  * @author Phillip Webb
  */
-public class Formatter extends CodeFormatter {
+public class Formatter {
 
 	/**
 	 * The components that will be formatted by default.
@@ -65,6 +65,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Create a new formatter instance.
+	 *
 	 * @param javaFormatConfig the java format config to use
 	 */
 	public Formatter(JavaFormatConfig javaFormatConfig) {
@@ -73,6 +74,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format the given source content.
+	 *
 	 * @param source the source content to format
 	 * @return the text edit
 	 */
@@ -82,6 +84,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format the given source content.
+	 *
 	 * @param source the source content to format
 	 * @param lineSeparator the line separator
 	 * @return the text edit
@@ -92,6 +95,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
+	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -103,6 +107,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
+	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -113,7 +118,6 @@ public class Formatter extends CodeFormatter {
 		return format(DEFAULT_COMPONENTS, source, offset, length, DEFAULT_INDENTATION_LEVEL, lineSeparator);
 	}
 
-	@Override
 	public TextEdit format(int kind, String source, int offset, int length, int indentationLevel,
 			String lineSeparator) {
 		return this.delegate.format(kind, source, offset, length, indentationLevel, lineSeparator);
@@ -121,6 +125,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format specific subsections of the given source content.
+	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @return the text edit
@@ -131,6 +136,7 @@ public class Formatter extends CodeFormatter {
 
 	/**
 	 * Format specific subsections of the given source content.
+	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @param lineSeparator the line separator
@@ -140,24 +146,21 @@ public class Formatter extends CodeFormatter {
 		return format(DEFAULT_COMPONENTS, source, regions, DEFAULT_INDENTATION_LEVEL, lineSeparator);
 	}
 
-	@Override
 	public TextEdit format(int kind, String source, IRegion[] regions, int indentationLevel, String lineSeparator) {
 		return this.delegate.format(kind, source, regions, indentationLevel, lineSeparator);
 	}
 
-	@Override
 	public String createIndentationString(int indentationLevel) {
 		return this.delegate.createIndentationString(indentationLevel);
 	}
 
-	@Override
 	public void setOptions(Map<String, String> options) {
 		this.delegate.setOptions(options);
 	}
 
 	/**
-	 * Internal delegate code formatter to apply Spring {@literal formatter.prefs} and add
-	 * {@link Preparator Preparators}.
+	 * Internal delegate code formatter to apply Spring {@literal formatter.prefs}
+	 * and add {@link Preparator Preparators}.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static class DelegateCodeFormatter extends ExtendedCodeFormatter {
