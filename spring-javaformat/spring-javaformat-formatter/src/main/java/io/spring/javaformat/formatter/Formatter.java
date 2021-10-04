@@ -191,7 +191,7 @@ public class Formatter {
 
 		private static void applyConfig(Properties properties, JavaFormatConfig javaFormatConfig) {
 			if (javaFormatConfig.getIndentationStyle() == IndentationStyle.SPACES) {
-				properties.put("io.spring.javaformat.eclipse.jdt.core.formatter.tabulation.char", "space");
+				properties.put("io.spring.javaformat.eclipse.jdt.jdk8.core.formatter.tabulation.char", "space");
 			}
 		}
 
