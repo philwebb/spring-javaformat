@@ -77,7 +77,8 @@ public final class EclipseRewriter {
 				DefaultCodeFormatterManipulator::new);
 		if (jdkVersion == JdkVersion.V8) {
 			rewrite(zip, "org/eclipse/osgi/util/NLS$1.class", NlsJdk8Manipulator::new);
-		} else {
+		}
+		else {
 			rewrite(zip, "org/eclipse/osgi/util/NLS.class", NlsJdk11Manipulator::new);
 		}
 	}
@@ -147,8 +148,8 @@ public final class EclipseRewriter {
 	}
 
 	/**
-	 * {@link ClassVisitor} to update the {@code NLS} class in the JDK 8 version so
-	 * it doesn't use a System property to disable warning messages.
+	 * {@link ClassVisitor} to update the {@code NLS} class in the JDK 8 version so it
+	 * doesn't use a System property to disable warning messages.
 	 */
 	private static class NlsJdk8Manipulator extends ClassVisitor {
 
@@ -167,8 +168,8 @@ public final class EclipseRewriter {
 	}
 
 	/**
-	 * {@link MethodVisitor} to update the {@code NLS} class in the JDK 8 version so
-	 * it doesn't use a System property to disable warning messages.
+	 * {@link MethodVisitor} to update the {@code NLS} class in the JDK 8 version so it
+	 * doesn't use a System property to disable warning messages.
 	 */
 	private static class NslJdk8MethodManipulator extends MethodVisitor {
 
@@ -192,8 +193,8 @@ public final class EclipseRewriter {
 	}
 
 	/**
-	 * {@link ClassVisitor} to update the {@code NLS} class in the JDK 8 version so
-	 * it doesn't use a System property to disable warning messages.
+	 * {@link ClassVisitor} to update the {@code NLS} class in the JDK 8 version so it
+	 * doesn't use a System property to disable warning messages.
 	 */
 	private static class NlsJdk11Manipulator extends ClassVisitor {
 
@@ -212,8 +213,8 @@ public final class EclipseRewriter {
 	}
 
 	/**
-	 * {@link MethodVisitor} to update the {@code NLS} class in the JDK 8 version so
-	 * it doesn't use a System property to disable warning messages.
+	 * {@link MethodVisitor} to update the {@code NLS} class in the JDK 8 version so it
+	 * doesn't use a System property to disable warning messages.
 	 */
 	private static class NslJdk11MethodManipulator extends MethodVisitor {
 
