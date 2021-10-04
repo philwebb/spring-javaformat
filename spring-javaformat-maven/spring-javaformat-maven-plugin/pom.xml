@@ -82,7 +82,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
-			<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
+			<artifactId>spring-javaformat-formatter-eclipse-runtime-jdk8</artifactId>
 			<version>${project.version}</version>
 			<exclusions>
 				<exclusion>
