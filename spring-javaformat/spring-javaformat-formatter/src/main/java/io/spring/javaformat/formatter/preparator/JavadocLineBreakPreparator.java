@@ -20,19 +20,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.spring.javaformat.eclipse.jdt.core.dom.ASTNode;
-import io.spring.javaformat.eclipse.jdt.core.dom.ASTVisitor;
-import io.spring.javaformat.eclipse.jdt.core.dom.Comment;
-import io.spring.javaformat.eclipse.jdt.core.dom.CompilationUnit;
-import io.spring.javaformat.eclipse.jdt.core.dom.Javadoc;
-import io.spring.javaformat.eclipse.jdt.core.dom.TagElement;
-import io.spring.javaformat.eclipse.jdt.core.dom.TextElement;
-import io.spring.javaformat.eclipse.jdt.core.dom.TypeDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.formatter.CodeFormatter;
-import io.spring.javaformat.eclipse.jdt.internal.compiler.parser.TerminalTokens;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.Preparator;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.Token;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.TokenManager;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTNode;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTVisitor;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.Comment;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.CompilationUnit;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.Javadoc;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.TagElement;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.TextElement;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.TypeDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.formatter.CodeFormatter;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.compiler.parser.TerminalTokens;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.Preparator;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.Token;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.TokenManager;
 
 /**
  * {@link Preparator} to fine tune Javadoc whitespace.

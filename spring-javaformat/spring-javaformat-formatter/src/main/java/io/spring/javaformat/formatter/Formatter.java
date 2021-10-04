@@ -27,9 +27,9 @@ import org.eclipse.text.edits.TextEdit;
 
 import io.spring.javaformat.config.IndentationStyle;
 import io.spring.javaformat.config.JavaFormatConfig;
-import io.spring.javaformat.eclipse.jdt.core.formatter.CodeFormatter;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.ExtendedCodeFormatter;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.Preparator;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.formatter.CodeFormatter;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.ExtendedCodeFormatter;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.Preparator;
 import io.spring.javaformat.formatter.preparator.Preparators;
 
 /**
@@ -65,7 +65,6 @@ public class Formatter {
 
 	/**
 	 * Create a new formatter instance.
-	 *
 	 * @param javaFormatConfig the java format config to use
 	 */
 	public Formatter(JavaFormatConfig javaFormatConfig) {
@@ -74,7 +73,6 @@ public class Formatter {
 
 	/**
 	 * Format the given source content.
-	 *
 	 * @param source the source content to format
 	 * @return the text edit
 	 */
@@ -84,7 +82,6 @@ public class Formatter {
 
 	/**
 	 * Format the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param lineSeparator the line separator
 	 * @return the text edit
@@ -95,7 +92,6 @@ public class Formatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -107,7 +103,6 @@ public class Formatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -125,7 +120,6 @@ public class Formatter {
 
 	/**
 	 * Format specific subsections of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @return the text edit
@@ -136,7 +130,6 @@ public class Formatter {
 
 	/**
 	 * Format specific subsections of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @param lineSeparator the line separator
@@ -159,8 +152,8 @@ public class Formatter {
 	}
 
 	/**
-	 * Internal delegate code formatter to apply Spring {@literal formatter.prefs}
-	 * and add {@link Preparator Preparators}.
+	 * Internal delegate code formatter to apply Spring {@literal formatter.prefs} and add
+	 * {@link Preparator Preparators}.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static class DelegateCodeFormatter extends ExtendedCodeFormatter {

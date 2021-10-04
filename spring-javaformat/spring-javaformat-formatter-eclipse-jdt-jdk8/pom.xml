@@ -8,8 +8,8 @@
 		<artifactId>spring-javaformat</artifactId>
 		<version>0.0.29-SNAPSHOT</version>
 	</parent>
-	<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
-	<name>Spring JavaFormat Eclipse Runtime</name>
+	<artifactId>spring-javaformat-formatter-eclipse-jdt-jdk8</artifactId>
+	<name>Spring JavaFormat Eclipse JDT JDK-8</name>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>
@@ -49,11 +49,17 @@
 							<filters>
 								<filter>
 									<artifact>io.spring.javaformat:spring-javaformat-formatter-eclipse-jdk8</artifact>
-									<excludes>
-										<exclude>org/eclipse/jdt/**</exclude>
-									</excludes>
+									<includes>
+										<include>org/eclipse/jdt/**</include>
+									</includes>
 								</filter>
 							</filters>
+							<relocations>
+								<relocation>
+									<pattern>org.eclipse.jdt</pattern>
+									<shadedPattern>io.spring.javaformat.eclipse.jdt.jdk8</shadedPattern>
+								</relocation>
+							</relocations>
 							<createDependencyReducedPom>false</createDependencyReducedPom>
 							<createSourcesJar>true</createSourcesJar>
 							<shadeSourcesContent>true</shadeSourcesContent>

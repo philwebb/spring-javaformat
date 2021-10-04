@@ -16,19 +16,19 @@
 
 package io.spring.javaformat.formatter.preparator;
 
-import io.spring.javaformat.eclipse.jdt.core.dom.ASTNode;
-import io.spring.javaformat.eclipse.jdt.core.dom.ASTVisitor;
-import io.spring.javaformat.eclipse.jdt.core.dom.AbstractTypeDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.dom.EnumDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.dom.FieldDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.dom.SimpleName;
-import io.spring.javaformat.eclipse.jdt.core.dom.TypeDeclaration;
-import io.spring.javaformat.eclipse.jdt.core.formatter.CodeFormatter;
-import io.spring.javaformat.eclipse.jdt.internal.compiler.parser.TerminalTokens;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.Preparator;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.Token;
-import io.spring.javaformat.eclipse.jdt.internal.formatter.TokenManager;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTNode;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTVisitor;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.AbstractTypeDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.AnnotationTypeDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.EnumDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.FieldDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.SimpleName;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.TypeDeclaration;
+import io.spring.javaformat.eclipse.jdt.jdk8.core.formatter.CodeFormatter;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.compiler.parser.TerminalTokens;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.Preparator;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.Token;
+import io.spring.javaformat.eclipse.jdt.jdk8.internal.formatter.TokenManager;
 
 /**
  * {@link Preparator} to fine tune curly-brace line breaks.
