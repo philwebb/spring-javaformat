@@ -22,8 +22,7 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.text.edits.TextEdit;
 
 /**
- * Internal interface used to access an Eclipse {@code CodeFormatter}
- * implementation.
+ * Internal interface used to access an Eclipse {@code CodeFormatter} implementation.
  *
  * @author Phillip Webb
  */

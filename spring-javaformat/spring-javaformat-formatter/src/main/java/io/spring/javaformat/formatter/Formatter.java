@@ -39,8 +39,8 @@ public class Formatter {
 	private static final int K_COMPILATION_UNIT = 0x08;
 
 	/**
-	 * Flag used to include the comments during the formatting of the code snippet.
-	 * See Eclipse {@code CodeFormatter} constants.
+	 * Flag used to include the comments during the formatting of the code snippet. See
+	 * Eclipse {@code CodeFormatter} constants.
 	 */
 	private static final int F_INCLUDE_COMMENTS = 0x1000;
 
@@ -70,7 +70,6 @@ public class Formatter {
 
 	/**
 	 * Create a new formatter instance.
-	 *
 	 * @param javaFormatConfig the java format config to use
 	 */
 	public Formatter(JavaFormatConfig javaFormatConfig) {
@@ -79,7 +78,6 @@ public class Formatter {
 
 	/**
 	 * Format the given source content.
-	 *
 	 * @param source the source content to format
 	 * @return the text edit
 	 */
@@ -89,7 +87,6 @@ public class Formatter {
 
 	/**
 	 * Format the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param lineSeparator the line separator
 	 * @return the text edit
@@ -100,7 +97,6 @@ public class Formatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -112,7 +108,6 @@ public class Formatter {
 
 	/**
 	 * Format a specific subsection of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param offset the offset to start formatting
 	 * @param length the length to format
@@ -130,7 +125,6 @@ public class Formatter {
 
 	/**
 	 * Format specific subsections of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @return the text edit
@@ -141,7 +135,6 @@ public class Formatter {
 
 	/**
 	 * Format specific subsections of the given source content.
-	 *
 	 * @param source the source content to format
 	 * @param regions the regions to format
 	 * @param lineSeparator the line separator

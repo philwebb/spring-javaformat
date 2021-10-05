@@ -44,7 +44,8 @@ public class Options {
 			Map<String, String> properties = loadProperties();
 			applyConfig(properties, javaFormatConfig);
 			return Collections.unmodifiableMap(properties);
-		} catch (IOException ex) {
+		}
+		catch (IOException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
