@@ -30,19 +30,15 @@ import java.nio.file.Path;
 public interface JavaFormatConfig {
 
 	/**
-	 * {@link JavaFormatConfig} using {@link IndentationStyle#TABS}.
-	 */
-	JavaFormatConfig TABS = new DefaultJavaFormatConfig(IndentationStyle.TABS);
-
-	/**
-	 * {@link JavaFormatConfig} using {@link IndentationStyle#SPACES}.
-	 */
-	JavaFormatConfig SPACES = new DefaultJavaFormatConfig(IndentationStyle.SPACES);
-
-	/**
 	 * The default {@link JavaFormatConfig}.
 	 */
-	JavaFormatConfig DEFAULT = TABS;
+	JavaFormatConfig DEFAULT = new DefaultJavaFormatConfig(JdkVersion.V8, IndentationStyle.TABS);
+
+	/**
+	 * Java JDK version expected be used when formatting.
+	 * @return the JDK version
+	 */
+	JdkVersion getJdkVersion();
 
 	/**
 	 * Return the indentation style that should be used with the project.

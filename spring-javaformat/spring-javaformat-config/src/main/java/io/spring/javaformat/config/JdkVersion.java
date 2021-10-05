@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2021 the original author or authors.
+ * Copyright 2017-2020 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,29 +17,20 @@
 package io.spring.javaformat.config;
 
 /**
- * Default {@link JavaFormatConfig} implementation used when no config file is found.
+ * Java JDK version expected be used when formatting.
  *
  * @author Phillip Webb
  */
-class DefaultJavaFormatConfig implements JavaFormatConfig {
+public enum JdkVersion {
 
-	private final JdkVersion jdkVersion;
+	/**
+	 * Use JDK 8 compatible formatter.
+	 */
+	V8,
 
-	private final IndentationStyle indentationStyle;
-
-	DefaultJavaFormatConfig(JdkVersion jdkVersion, IndentationStyle indentationStyle) {
-		this.jdkVersion = jdkVersion;
-		this.indentationStyle = indentationStyle;
-	}
-
-	@Override
-	public JdkVersion getJdkVersion() {
-		return this.jdkVersion;
-	}
-
-	@Override
-	public IndentationStyle getIndentationStyle() {
-		return this.indentationStyle;
-	}
+	/**
+	 * Use JDK 11 or higher compatible formatter.
+	 */
+	V11
 
 }

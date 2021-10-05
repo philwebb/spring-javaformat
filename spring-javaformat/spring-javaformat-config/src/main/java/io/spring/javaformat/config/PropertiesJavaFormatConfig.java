@@ -36,6 +36,12 @@ class PropertiesJavaFormatConfig implements JavaFormatConfig {
 	}
 
 	@Override
+	public JdkVersion getJdkVersion() {
+		Object value = this.properties.get("jdk-version");
+		return (value != null) ? JdkVersion.valueOf(value.toString().toUpperCase().trim()) : DEFAULT.getJdkVersion();
+	}
+
+	@Override
 	public IndentationStyle getIndentationStyle() {
 		Object value = this.properties.get("indentation-style");
 		return (value != null) ? IndentationStyle.valueOf(value.toString().toUpperCase().trim())
