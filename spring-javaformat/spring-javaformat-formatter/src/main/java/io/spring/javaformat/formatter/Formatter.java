@@ -22,7 +22,9 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.text.edits.TextEdit;
 
 import io.spring.javaformat.config.JavaFormatConfig;
+import io.spring.javaformat.config.JdkVersion;
 import io.spring.javaformat.formatter.eclipse.EclipseCodeFormatter;
+import io.spring.javaformat.formatter.jdk11.eclipse.EclipseJdk11CodeFormatter;
 import io.spring.javaformat.formatter.jdk8.eclipse.EclipseJdk8CodeFormatter;
 
 /**
@@ -73,7 +75,8 @@ public class Formatter {
 	 * @param javaFormatConfig the java format config to use
 	 */
 	public Formatter(JavaFormatConfig javaFormatConfig) {
-		this.delegate = new EclipseJdk8CodeFormatter(javaFormatConfig);
+		this.delegate = javaFormatConfig.getJdkVersion() == JdkVersion.V8
+				? new EclipseJdk8CodeFormatter(javaFormatConfig) : new EclipseJdk11CodeFormatter(javaFormatConfig);
 	}
 
 	/**
