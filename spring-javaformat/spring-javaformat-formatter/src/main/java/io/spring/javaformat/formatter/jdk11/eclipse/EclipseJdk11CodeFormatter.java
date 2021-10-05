@@ -27,6 +27,8 @@ import io.spring.javaformat.formatter.eclipse.Options;
 /**
  * Internal delegate JDK 11 {@link EclipseCodeFormatter} to apply Spring
  * {@literal formatter.prefs} and add {@link Preparator Preparators}.
+ *
+ * @author Phillip Webb
  */
 public class EclipseJdk11CodeFormatter extends ExtendedCodeFormatter implements EclipseCodeFormatter {
 

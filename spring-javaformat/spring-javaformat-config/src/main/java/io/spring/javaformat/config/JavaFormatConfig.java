@@ -32,7 +32,7 @@ public interface JavaFormatConfig {
 	/**
 	 * The default {@link JavaFormatConfig}.
 	 */
-	JavaFormatConfig DEFAULT = new DefaultJavaFormatConfig(JdkVersion.V8, IndentationStyle.TABS);
+	JavaFormatConfig DEFAULT = of(JdkVersion.V8, IndentationStyle.TABS);
 
 	/**
 	 * Java JDK version expected be used when formatting.
@@ -106,6 +106,16 @@ public interface JavaFormatConfig {
 		catch (IOException ex) {
 			throw new IllegalStateException(ex);
 		}
+	}
+
+	/**
+	 * Factory method to create a {@link JavaFormatConfig} with specific settings.
+	 * @param jdkVersion THE JDK version
+	 * @param indentationStyle the indentation style
+	 * @return a {@link JavaFormatConfig} instance
+	 */
+	static JavaFormatConfig of(JdkVersion jdkVersion, IndentationStyle indentationStyle) {
+		return new DefaultJavaFormatConfig(jdkVersion, indentationStyle);
 	}
 
 }

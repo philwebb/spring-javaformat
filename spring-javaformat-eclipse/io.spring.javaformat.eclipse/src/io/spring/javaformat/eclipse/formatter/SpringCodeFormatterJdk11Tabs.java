@@ -18,17 +18,19 @@ package io.spring.javaformat.eclipse.formatter;
 
 import org.eclipse.jdt.core.formatter.CodeFormatter;
 
+import io.spring.javaformat.config.IndentationStyle;
 import io.spring.javaformat.config.JavaFormatConfig;
+import io.spring.javaformat.config.JdkVersion;
 
 /**
- * Eclipse {@link CodeFormatter} for Spring formatting with spaces.
+ * Eclipse {@link CodeFormatter} for Spring formatting with tabs.
  *
  * @author Phillip Webb
  */
-public class SpringCodeFormatterSpaces extends SpringCodeFormatter {
+public class SpringCodeFormatterJdk11Tabs extends SpringCodeFormatter {
 
-	public SpringCodeFormatterSpaces() {
-		super(JavaFormatConfig.SPACES);
+	public SpringCodeFormatterJdk11Tabs() {
+		super(JavaFormatConfig.of(JdkVersion.V11, IndentationStyle.SPACES));
 	}
 
 }

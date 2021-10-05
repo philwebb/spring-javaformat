@@ -24,6 +24,7 @@ import java.util.Map;
 
 import io.spring.javaformat.config.IndentationStyle;
 import io.spring.javaformat.config.JavaFormatConfig;
+import io.spring.javaformat.config.JdkVersion;
 
 /**
  * Locates project settings files to be applied to projects.
@@ -71,11 +72,25 @@ public class ProjectSettingsFilesLocator {
 	}
 
 	private String updateFormatter(JavaFormatConfig javaFormatConfig, String content) {
-		if (javaFormatConfig.getIndentationStyle() == IndentationStyle.SPACES) {
+		String formatterId = getFormatterId(javaFormatConfig);
+		if (formatterId != null) {
 			return content.replace("org.eclipse.jdt.core.javaFormatter=io.spring.javaformat.eclipse.formatter",
-					"org.eclipse.jdt.core.javaFormatter=io.spring.javaformat.eclipse.formatter.spaces");
+					"org.eclipse.jdt.core.javaFormatter=" + formatterId);
 		}
 		return content;
+	}
+
+	private String getFormatterId(JavaFormatConfig config) {
+		if (config.getJdkVersion() == JdkVersion.V8 && config.getIndentationStyle() == IndentationStyle.SPACES) {
+			return "io.spring.javaformat.eclipse.formatter.jdk8.spaces";
+		}
+		if (config.getJdkVersion() == JdkVersion.V11 && config.getIndentationStyle() == IndentationStyle.TABS) {
+			return "io.spring.javaformat.eclipse.formatter.jdk11.tabs";
+		}
+		if (config.getJdkVersion() == JdkVersion.V11 && config.getIndentationStyle() == IndentationStyle.SPACES) {
+			return "io.spring.javaformat.eclipse.formatter.jdk11.spaces";
+		}
+		return null;
 	}
 
 	private void add(ProjectProperties projectProperties, Map<String, ProjectSettingsFile> files, File folder)
