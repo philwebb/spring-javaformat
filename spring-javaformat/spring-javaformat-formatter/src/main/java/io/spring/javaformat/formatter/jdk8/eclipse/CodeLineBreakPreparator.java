@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.formatter.preparator;
+package io.spring.javaformat.formatter.jdk8.eclipse;
 
 import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTNode;
 import io.spring.javaformat.eclipse.jdt.jdk8.core.dom.ASTVisitor;
