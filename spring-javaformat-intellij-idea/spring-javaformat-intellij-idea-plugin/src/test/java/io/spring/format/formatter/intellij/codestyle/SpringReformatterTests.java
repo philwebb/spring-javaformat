@@ -66,7 +66,7 @@ public class SpringReformatterTests {
 
 	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		given(this.file.getVirtualFile()).willReturn(this.virtualFile);
 		this.reformatter = new TestSpringReformatter(() -> this.project, () -> this.application,
 				() -> this.documentManager);
