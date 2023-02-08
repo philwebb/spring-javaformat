@@ -56,11 +56,11 @@ class StatusIndicator {
 		}
 		if (state == State.ACTIVE) {
 			show(statusBar);
-		}
+		} 
 		else {
 			hide(statusBar);
 		}
-	}
+	} 
 
 	private void retryUpdate(State state) {
 		ApplicationManager.getApplication().invokeLater(() -> update(state));
