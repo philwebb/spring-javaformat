@@ -20,15 +20,14 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
 
 /**
- * {@link StartupActivity} hook for {@link SpringFormat}.
+ * {@link StartupActivity} hook for {@link XSpringFormat}.
  *
  * @author Phillip Webb
  */
-public class SpringFormatStartupActivity implements StartupActivity {
+public class SpringJavaFormatStartupActivity implements StartupActivity {
 
 	@Override
 	public void runActivity(Project project) {
-		// new SpringFormat(project);
 	}
 
 }

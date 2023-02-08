@@ -23,6 +23,8 @@ import com.intellij.openapi.util.TextRange;
 import org.eclipse.jface.text.IRegion;
 import org.junit.jupiter.api.Test;
 
+import io.spring.format.formatter.intellij.xcodestyle.EclipseRegionAdapter;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

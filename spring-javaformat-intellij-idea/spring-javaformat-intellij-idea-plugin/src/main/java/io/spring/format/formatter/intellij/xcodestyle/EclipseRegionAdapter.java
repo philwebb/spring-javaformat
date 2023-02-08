@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle;
+package io.spring.format.formatter.intellij.xcodestyle;
 
 import java.util.ArrayList;
 import java.util.Collection;

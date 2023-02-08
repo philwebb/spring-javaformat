@@ -47,9 +47,9 @@ class StatusIndicator {
 		this.project = project;
 	}
 
-	public void update(State state) {
+	void update(State state) { 
 		WindowManager windowManager = WindowManager.getInstance();
-		final StatusBar statusBar = windowManager.getStatusBar(this.project);
+		StatusBar statusBar = windowManager.getStatusBar(this.project);
 		if (statusBar == null) {
 			AppExecutorUtil.getAppScheduledExecutorService().schedule(() -> retryUpdate(state), 1, TimeUnit.SECONDS);
 			return;

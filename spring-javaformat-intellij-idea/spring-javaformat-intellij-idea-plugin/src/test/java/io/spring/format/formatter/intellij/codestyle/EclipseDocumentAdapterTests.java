@@ -19,6 +19,8 @@ package io.spring.format.formatter.intellij.codestyle;
 import com.intellij.openapi.editor.Document;
 import org.junit.jupiter.api.Test;
 
+import io.spring.format.formatter.intellij.xcodestyle.EclipseDocumentAdapter;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;

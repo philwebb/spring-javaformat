@@ -31,6 +31,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import io.spring.format.formatter.intellij.xcodestyle.SpringCodeStyleManager;
+import io.spring.format.formatter.intellij.xcodestyle.SpringReformatter;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;

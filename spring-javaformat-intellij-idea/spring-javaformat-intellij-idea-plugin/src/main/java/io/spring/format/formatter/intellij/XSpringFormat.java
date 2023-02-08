@@ -34,25 +34,25 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.serviceContainer.ComponentManagerImpl;
 import org.picocontainer.MutablePicoContainer;
 
-import io.spring.format.formatter.intellij.codestyle.SpringCodeStyleManager;
 import io.spring.format.formatter.intellij.codestyle.monitor.FileMonitor;
 import io.spring.format.formatter.intellij.codestyle.monitor.GradleMonitor;
 import io.spring.format.formatter.intellij.codestyle.monitor.MavenMonitor;
 import io.spring.format.formatter.intellij.codestyle.monitor.Monitors;
 import io.spring.format.formatter.intellij.codestyle.monitor.Trigger.State;
+import io.spring.format.formatter.intellij.xcodestyle.SpringCodeStyleManager;
 
 /**
  * Spring Java Format IntelliJ support added to a {@link Project}.
  *
  * @author Phillip Webb
  */
-public class SpringFormat {
+public class XSpringFormat {
 
 	private static final String CODE_STYLE_MANAGER_KEY = CodeStyleManager.class.getName();
 
-	private static final String ACTIVE_PROPERTY = SpringFormat.class.getName() + ".ACTIVE";
+	private static final String ACTIVE_PROPERTY = XSpringFormat.class.getName() + ".ACTIVE";
 
-	private static final Logger logger = Logger.getInstance(SpringFormat.class);
+	private static final Logger logger = Logger.getInstance(XSpringFormat.class);
 
 	private final Project project;
 
@@ -64,7 +64,7 @@ public class SpringFormat {
 
 	private PropertiesComponent properties;
 
-	protected SpringFormat(Project project) {
+	protected XSpringFormat(Project project) {
 		logger.info("Initializing Spring Format for project " + project.getName());
 		this.project = project;
 		this.statusIndicator = new StatusIndicator(project);

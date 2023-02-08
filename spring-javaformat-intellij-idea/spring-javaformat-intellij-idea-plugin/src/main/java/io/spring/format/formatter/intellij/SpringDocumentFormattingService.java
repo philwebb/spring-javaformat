@@ -30,7 +30,7 @@ import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author pwebb
+ * @author Phillip Webb
  */
 public class SpringDocumentFormattingService extends AbstractDocumentFormattingService {
 
