@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle.monitor;
+package io.spring.format.formatter.intellij.monitor;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -24,7 +24,7 @@ import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.openapi.vfs.VirtualFileMoveEvent;
 import com.intellij.openapi.vfs.VirtualFilePropertyEvent;
 
-import io.spring.format.formatter.intellij.codestyle.monitor.Trigger.State;
+import io.spring.format.formatter.intellij.state.State;
 
 /**
  * {@link Monitor} that looks for a {@literal .springformat} file.

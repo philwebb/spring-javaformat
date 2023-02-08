@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle;
+package io.spring.format.formatter.intellij.formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +22,6 @@ import java.util.List;
 import com.intellij.openapi.util.TextRange;
 import org.eclipse.jface.text.IRegion;
 import org.junit.jupiter.api.Test;
-
-import io.spring.format.formatter.intellij.xcodestyle.EclipseRegionAdapter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,25 +33,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class EclipseRegionAdapterTests {
 
 	@Test
-	public void getOffsetShouldReturnStartOffset() throws Exception {
+	void getOffsetReturnsStartOffset() throws Exception {
 		IRegion region = new EclipseRegionAdapter(new TextRange(10, 20));
 		assertThat(region.getOffset()).isEqualTo(10);
 	}
 
 	@Test
-	public void getLengthShouldReturnLength() throws Exception {
+	void getLengthReturnsLength() throws Exception {
 		IRegion region = new EclipseRegionAdapter(new TextRange(10, 20));
 		assertThat(region.getLength()).isEqualTo(10);
 	}
 
 	@Test
-	public void asArrayWhenCollectionIsNullShouldReturnEmptyArray() throws Exception {
+	void asArrayWhenCollectionIsNullReturnsEmptyArray() throws Exception {
 		IRegion[] regions = EclipseRegionAdapter.asArray(null);
 		assertThat(regions).isNotNull().isEmpty();
 	}
 
 	@Test
-	public void asArrayShouldReturnArray() throws Exception {
+	void asArrayReturnsArray() throws Exception {
 		List<TextRange> ranges = Arrays.asList(new TextRange(10, 20), new TextRange(30, 35));
 		IRegion[] regions = EclipseRegionAdapter.asArray(ranges);
 		assertThat(regions).hasSize(2);

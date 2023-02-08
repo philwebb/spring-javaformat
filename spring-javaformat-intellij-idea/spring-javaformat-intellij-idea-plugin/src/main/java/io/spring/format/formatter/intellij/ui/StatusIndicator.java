@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij;
+package io.spring.format.formatter.intellij.ui;
 
 import java.awt.event.MouseEvent;
 import java.util.concurrent.TimeUnit;
@@ -30,24 +30,24 @@ import com.intellij.openapi.wm.WindowManager;
 import com.intellij.util.Consumer;
 import com.intellij.util.concurrency.AppExecutorUtil;
 
-import io.spring.format.formatter.intellij.codestyle.monitor.Trigger.State;
+import io.spring.format.formatter.intellij.state.State;
 
 /**
  * Indicator used to show when Spring Formatting is active.
  *
  * @author Phillip Webb
  */
-class StatusIndicator {
+public class StatusIndicator {
 
 	private final Project project;
 
 	private Widget widget;
 
-	StatusIndicator(Project project) {
+	public StatusIndicator(Project project) {
 		this.project = project;
 	}
 
-	void update(State state) { 
+	public void update(State state) {
 		WindowManager windowManager = WindowManager.getInstance();
 		StatusBar statusBar = windowManager.getStatusBar(this.project);
 		if (statusBar == null) {
@@ -56,11 +56,11 @@ class StatusIndicator {
 		}
 		if (state == State.ACTIVE) {
 			show(statusBar);
-		} 
+		}
 		else {
 			hide(statusBar);
 		}
-	} 
+	}
 
 	private void retryUpdate(State state) {
 		ApplicationManager.getApplication().invokeLater(() -> update(state));

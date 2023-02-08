@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.xcodestyle;
+package io.spring.format.formatter.intellij.formatting;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;

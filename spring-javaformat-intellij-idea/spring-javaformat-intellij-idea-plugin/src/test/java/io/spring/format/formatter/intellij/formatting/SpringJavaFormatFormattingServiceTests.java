@@ -14,37 +14,16 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle.monitor;
+package io.spring.format.formatter.intellij.formatting;
+
+import org.junit.jupiter.api.Disabled;
 
 /**
- * Trigger used to to update the state for this monitor. Triggers are thread safe and can
- * be called from any active thread.
+ * Tests for {@link SpringJavaFormatFormattingService}.
  *
  * @author Phillip Webb
  */
-public interface Trigger {
-
-	/**
-	 * Update the state of the monitor.
-	 * @param state the updated state
-	 */
-	void updateState(State state);
-
-	/**
-	 * The desired state of the plugin for this monitor.
-	 */
-	enum State {
-
-		/**
-		 * The plugin should be active.
-		 */
-		ACTIVE,
-
-		/**
-		 * The plugin need not be active.
-		 */
-		NOT_ACTIVE
-
-	}
+@Disabled
+class SpringJavaFormatFormattingServiceTests {
 
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle.monitor;
+package io.spring.format.formatter.intellij.monitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 
 import com.intellij.openapi.project.Project;
 
-import io.spring.format.formatter.intellij.codestyle.monitor.Trigger.State;
+import io.spring.format.formatter.intellij.state.State;
 
 /**
  * Utility class used to manage a collection of {@link Monitors}. Creates and manages

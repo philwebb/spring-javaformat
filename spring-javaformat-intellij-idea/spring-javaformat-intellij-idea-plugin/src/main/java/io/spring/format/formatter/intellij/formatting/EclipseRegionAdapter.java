@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.xcodestyle;
+package io.spring.format.formatter.intellij.formatting;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,15 +29,15 @@ import org.eclipse.jface.text.Region;
  *
  * @author Phillip Webb
  */
-public class EclipseRegionAdapter extends Region {
+class EclipseRegionAdapter extends Region {
 
 	private static final IRegion[] NO_REGIONS = {};
 
-	public EclipseRegionAdapter(TextRange range) {
+	EclipseRegionAdapter(TextRange range) {
 		super(range.getStartOffset(), range.getLength());
 	}
 
-	public static IRegion[] asArray(Collection<? extends TextRange> ranges) {
+	static IRegion[] asArray(Collection<? extends TextRange> ranges) {
 		if (ranges == null) {
 			return NO_REGIONS;
 		}

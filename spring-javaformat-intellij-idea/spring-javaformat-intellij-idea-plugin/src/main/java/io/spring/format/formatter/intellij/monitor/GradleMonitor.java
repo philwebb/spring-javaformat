@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.format.formatter.intellij.codestyle.monitor;
+package io.spring.format.formatter.intellij.monitor;
 
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ import com.intellij.util.messages.MessageBusConnection;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.gradle.util.GradleConstants;
 
-import io.spring.format.formatter.intellij.codestyle.monitor.Trigger.State;
+import io.spring.format.formatter.intellij.state.State;
 
 /**
  * {@link Monitor} that looks for a {@code spring-javaformat-gradle-plugin}
