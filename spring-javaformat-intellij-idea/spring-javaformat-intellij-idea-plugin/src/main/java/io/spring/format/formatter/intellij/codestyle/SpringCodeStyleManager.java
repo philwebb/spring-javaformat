@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.function.Supplier;
 
 import com.intellij.openapi.util.TextRange;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.ChangedRangesInfo;
 import com.intellij.psi.codeStyle.CodeStyleManager;
@@ -46,6 +47,42 @@ public class SpringCodeStyleManager extends DelegatingCodeStyleManager {
 	}
 
 	@Override
+	public PsiElement reformat(PsiElement element) throws IncorrectOperationException {
+		return reformat(element, false);
+	}
+
+	@Override
+	public PsiElement reformat(PsiElement element, boolean canChangeWhiteSpacesOnly)
+			throws IncorrectOperationException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Auto-generated method stub");
+	}
+
+	@Override
+	public PsiElement reformatRange(PsiElement element, int startOffset, int endOffset)
+			throws IncorrectOperationException {
+		return reformatRange(element, startOffset, endOffset, false);
+	}
+
+	@Override
+	public PsiElement reformatRange(PsiElement element, int startOffset, int endOffset,
+			boolean canChangeWhiteSpacesOnly) throws IncorrectOperationException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Auto-generated method stub");
+	}
+
+	@Override
+	public void reformatTextWithContext(PsiFile file, Collection<? extends TextRange> ranges)
+			throws IncorrectOperationException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Auto-generated method stub");
+	}
+
+	public void reformat(PsiFile file, Collection<? extends TextRange> ranges) {
+		this.springReformatter.reformat(file, ranges);
+	}
+
+	@Override
 	public void reformatText(PsiFile file, int startOffset, int endOffset) throws IncorrectOperationException {
 		reformat(file, () -> Collections.singleton(new TextRange(startOffset, endOffset)),
 				() -> super.reformatText(file, startOffset, endOffset));
@@ -64,8 +101,7 @@ public class SpringCodeStyleManager extends DelegatingCodeStyleManager {
 	private void reformat(PsiFile file, Supplier<Collection<? extends TextRange>> ranges, Runnable delegate) {
 		if (this.springReformatter.canReformat(file)) {
 			this.springReformatter.reformat(file, ranges.get());
-		}
-		else {
+		} else {
 			delegate.run();
 		}
 	}

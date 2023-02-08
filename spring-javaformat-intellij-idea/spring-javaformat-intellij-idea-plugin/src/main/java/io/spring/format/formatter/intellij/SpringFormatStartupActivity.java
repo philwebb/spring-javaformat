@@ -28,7 +28,7 @@ public class SpringFormatStartupActivity implements StartupActivity {
 
 	@Override
 	public void runActivity(Project project) {
-		new SpringFormat(project);
+		// new SpringFormat(project);
 	}
 
 }

@@ -17,6 +17,7 @@
 package io.spring.format.formatter.intellij.codestyle;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.intellij.formatting.FormattingMode;
 import com.intellij.lang.ASTNode;
@@ -33,6 +34,8 @@ import com.intellij.psi.codeStyle.DocCommentSettings;
 import com.intellij.psi.codeStyle.FormattingModeAwareIndentAdjuster;
 import com.intellij.util.IncorrectOperationException;
 import com.intellij.util.ThrowableRunnable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * {@link CodeStyleManager} implementation that delegates all calls.
@@ -115,6 +118,12 @@ public class DelegatingCodeStyleManager extends CodeStyleManager implements Form
 	}
 
 	@Override
+	public void reformatTextWithContext(@NotNull PsiFile file, @NotNull Collection<? extends TextRange> ranges)
+			throws IncorrectOperationException {
+		this.delegate.reformatTextWithContext(file, ranges);
+	}
+
+	@Override
 	public void adjustLineIndent(PsiFile file, TextRange rangeToAdjust) throws IncorrectOperationException {
 		this.delegate.adjustLineIndent(file, rangeToAdjust);
 	}
@@ -148,6 +157,11 @@ public class DelegatingCodeStyleManager extends CodeStyleManager implements Form
 	@Override
 	public String getLineIndent(PsiFile file, int offset, FormattingMode mode) {
 		return this.delegate.getLineIndent(file, offset, mode);
+	}
+
+	@Override
+	public @Nullable List<String> getLineIndents(@NotNull PsiFile file) {
+		return this.delegate.getLineIndents(file);
 	}
 
 	@Override

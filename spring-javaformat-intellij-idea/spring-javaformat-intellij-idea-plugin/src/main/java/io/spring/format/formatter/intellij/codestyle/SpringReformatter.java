@@ -41,8 +41,8 @@ import io.spring.javaformat.config.JavaFormatConfig;
 import io.spring.javaformat.formatter.Formatter;
 
 /**
- * Reformatter used by {@link SpringCodeStyleManager} to determine when formatting can
- * apply and to perform the actual formatting.
+ * Reformatter used by {@link SpringCodeStyleManager} to determine when
+ * formatting can apply and to perform the actual formatting.
  *
  * @author Phillip Webb
  */
@@ -118,8 +118,7 @@ class SpringReformatter {
 				EclipseDocumentAdapter adapter = new EclipseDocumentAdapter(document);
 				textEdit.apply(adapter);
 				this.documentManager.get().commitDocument(document);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				throw new IllegalStateException(ex);
 			}
 		});

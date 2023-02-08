@@ -10,5 +10,6 @@
 	<depends>org.jetbrains.plugins.gradle</depends>
 	<extensions defaultExtensionNs="com.intellij">
 		<postStartupActivity implementation="io.spring.format.formatter.intellij.SpringFormatStartupActivity" />
+		<formattingService implementation=""/>
 	</extensions>
 </idea-plugin>
