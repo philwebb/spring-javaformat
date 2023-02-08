@@ -27,13 +27,13 @@ import com.intellij.openapi.vfs.VirtualFilePropertyEvent;
 import io.spring.format.formatter.intellij.state.State;
 
 /**
- * {@link Monitor} that looks for a {@literal .springformat} file.
+ * {@link Monitor} that looks for a {@literal .springjavaformatconfig} file.
  *
  * @author Phillip Webb
  */
 public class FileMonitor extends Monitor {
 
-	private static final String TRIGGER_FILE = ".springformat";
+	private static final String TRIGGER_FILE = ".springjavaformatconfig";
 
 	private final VirtualFileManager fileManager;
 

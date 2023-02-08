@@ -17,7 +17,6 @@
 package io.spring.format.formatter.intellij.formatting;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.intellij.openapi.util.TextRange;
@@ -37,7 +36,7 @@ class EclipseRegionAdapter extends Region {
 		super(range.getStartOffset(), range.getLength());
 	}
 
-	static IRegion[] asArray(Collection<? extends TextRange> ranges) {
+	static IRegion[] asArray(List<TextRange> ranges) {
 		if (ranges == null) {
 			return NO_REGIONS;
 		}

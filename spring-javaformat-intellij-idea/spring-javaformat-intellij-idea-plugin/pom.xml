@@ -18,11 +18,6 @@
 		<!-- Compile -->
 		<dependency>
 			<groupId>io.spring.javaformat</groupId>
-			<artifactId>spring-javaformat-formatter</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.spring.javaformat</groupId>
 			<artifactId>spring-javaformat-formatter-eclipse-runtime</artifactId>
 			<version>${project.version}</version>
 			<exclusions>
@@ -31,6 +26,11 @@
 					<artifactId>*</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.spring.javaformat</groupId>
+			<artifactId>spring-javaformat-formatter</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- Provided -->
 		<dependency>

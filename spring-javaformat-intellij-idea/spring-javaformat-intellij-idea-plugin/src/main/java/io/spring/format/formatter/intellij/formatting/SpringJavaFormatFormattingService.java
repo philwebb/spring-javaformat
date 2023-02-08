@@ -17,9 +17,9 @@
 package io.spring.format.formatter.intellij.formatting;
 
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 import com.intellij.formatting.FormattingContext;
 import com.intellij.formatting.service.AbstractDocumentFormattingService;
@@ -32,6 +32,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.text.edits.TextEdit;
 import org.jetbrains.annotations.NotNull;
@@ -49,9 +50,19 @@ public class SpringJavaFormatFormattingService extends AbstractDocumentFormattin
 
 	private static final String NORMALIZED_LINE_SEPARATOR = "\n";
 
-	private static final Set<Feature> FEATURES = Collections.emptySet();
+	private static final Set<Feature> FEATURES = Set.of(Feature.FORMAT_FRAGMENTS);
 
 	private static final FileType JAVA_FILE_TYPE = FileTypeManager.getInstance().getStdFileType("JAVA");
+
+	private final BiConsumer<Project, Runnable> runAction;
+
+	public SpringJavaFormatFormattingService() {
+		this(WriteCommandAction::runWriteCommandAction);
+	}
+
+	SpringJavaFormatFormattingService(BiConsumer<Project, Runnable> runAction) {
+		this.runAction = runAction;
+	}
 
 	@Override
 	public @NotNull Set<Feature> getFeatures() {
@@ -71,25 +82,22 @@ public class SpringJavaFormatFormattingService extends AbstractDocumentFormattin
 		JavaFormatConfig config = JavaFormatConfig.findFrom(path);
 		Formatter formatter = new Formatter(config);
 		String source = document.getText();
+		formattingRanges = (!formattingRanges.isEmpty()) ? formattingRanges : List.of(TextRange.allOf(source));
 		IRegion[] regions = EclipseRegionAdapter.asArray(formattingRanges);
 		TextEdit edit = formatter.format(source, regions, NORMALIZED_LINE_SEPARATOR);
 		applyEdit(formattingContext.getProject(), document, edit);
 	}
 
 	private void applyEdit(Project project, Document document, TextEdit textEdit) {
-		runWriteCommandAction(project, () -> {
+		this.runAction.accept(project, () -> {
 			try {
-				EclipseDocumentAdapter adapter = new EclipseDocumentAdapter(document);
-				textEdit.apply(adapter);
+				IDocument adapted = new EclipseDocumentAdapter(document);
+				textEdit.apply(adapted);
 			}
 			catch (Exception ex) {
 				throw new IllegalStateException(ex);
 			}
 		});
-	}
-
-	protected void runWriteCommandAction(Project project, Runnable runnable) {
-		WriteCommandAction.runWriteCommandAction(project, runnable);
 	}
 
 }
