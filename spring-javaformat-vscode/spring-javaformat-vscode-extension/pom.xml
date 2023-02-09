@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.spring.javaformat</groupId>
+		<artifactId>spring-javaformat-vscode</artifactId>
+		<version>0.0.36-SNAPSHOT</version>
+	</parent>
+	<artifactId>spring-javaformat-vscode-extension</artifactId>
+	<name>Spring JavaFormat Visual Studio Code Extension</name>
+	<properties>
+		<main.basedir>${basedir}/../..</main.basedir>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.12.1</version>
+				<executions>
+					<execution>
+						<id>install-node-and-npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<phase>generate-resources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<nodeVersion>v19.6.0</nodeVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
