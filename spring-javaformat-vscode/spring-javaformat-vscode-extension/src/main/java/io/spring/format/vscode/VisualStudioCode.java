@@ -21,9 +21,9 @@ package io.spring.format.vscode;
  *
  * @author Phillip Webb
  */
-public final class SpringJavaFormat {
+public final class VisualStudioCode {
 
-	private SpringJavaFormat() {
+	private VisualStudioCode() {
 	}
 
 	public static void main(String[] args) {
