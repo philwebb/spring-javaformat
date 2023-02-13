@@ -16,6 +16,12 @@
 
 package io.spring.format.vscode;
 
+import java.io.File;
+
+import io.spring.javaformat.config.JavaFormatConfig;
+import io.spring.javaformat.formatter.Formatter;
+import io.spring.javaformat.org.eclipse.text.edits.TextEdit;
+
 /**
  * Called from the Visual Studio Code extension to format source code.
  *
@@ -24,6 +30,10 @@ package io.spring.format.vscode;
 public final class VisualStudioCode {
 
 	private VisualStudioCode() {
+		JavaFormatConfig config = JavaFormatConfig.findFrom(new File("."));
+		Formatter formatter = new Formatter(config);
+		String source = "";
+		TextEdit format = formatter.format(source);
 	}
 
 	public static void main(String[] args) {

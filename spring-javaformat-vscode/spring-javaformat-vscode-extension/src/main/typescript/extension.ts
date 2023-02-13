@@ -1,11 +1,19 @@
 import * as vscode from 'vscode'
+import SpringJavaFormatter from './SpringDocumentFormattingEditProvider'
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "mrphil" is now active!')
-  let disposable = vscode.commands.registerCommand('mrphil.helloWorld', () => {
-    vscode.window.showInformationMessage('Hello World from TEST!')
-  })
-  context.subscriptions.push(disposable)
+  console.log('Activated spring-javaformat extension')
+  context.subscriptions.push(
+    vscode.languages.registerDocumentFormattingEditProvider(
+      [
+        {
+          language: 'java',
+          scheme: 'file',
+        },
+      ],
+      new SpringJavaFormatter()
+    )
+  )
 }
 
 export function deactivate() {}
