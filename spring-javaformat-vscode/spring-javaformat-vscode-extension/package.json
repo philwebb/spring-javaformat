@@ -15,17 +15,9 @@
     "Formatters"
   ],
   "activationEvents": [
-    "onCommand:mrphil.helloWorld"
+    "onLanguage:java"
   ],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "mrphil.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

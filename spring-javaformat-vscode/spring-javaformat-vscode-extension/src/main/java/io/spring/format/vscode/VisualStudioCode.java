@@ -16,11 +16,17 @@
 
 package io.spring.format.vscode;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Pattern;
 
 import io.spring.javaformat.config.JavaFormatConfig;
 import io.spring.javaformat.formatter.Formatter;
-import io.spring.javaformat.org.eclipse.text.edits.TextEdit;
+import io.spring.javaformat.org.eclipse.jface.text.Document;
+import io.spring.javaformat.org.eclipse.jface.text.IDocument;
 
 /**
  * Called from the Visual Studio Code extension to format source code.
@@ -29,14 +35,58 @@ import io.spring.javaformat.org.eclipse.text.edits.TextEdit;
  */
 public final class VisualStudioCode {
 
+	private static final Pattern TRAILING_WHITESPACE = Pattern.compile(" +$", Pattern.MULTILINE);
+
 	private VisualStudioCode() {
-		JavaFormatConfig config = JavaFormatConfig.findFrom(new File("."));
+	}
+
+	private void run(String[] args) throws Exception {
+		if (args.length != 1) {
+			throw new RuntimeException("Incorrect number of args");
+		}
+		String file = args[0];
+		log(String.format("Loading formatter for '%s'", file));
+		JavaFormatConfig config = JavaFormatConfig.findFrom(new File(file));
 		Formatter formatter = new Formatter(config);
-		String source = "";
-		TextEdit format = formatter.format(source);
+		String source = getSource();
+		format(formatter, source);
+		System.out.println(source);
+	}
+
+	private String format(Formatter formatter, String source) throws Exception {
+		IDocument document = new Document(source);
+		formatter.format(source).apply(document);
+		String formattedContent = document.get();
+		return trimTrailingWhitespace(formattedContent);
+	}
+
+	private String trimTrailingWhitespace(String content) {
+		return TRAILING_WHITESPACE.matcher(content).replaceAll("");
+	}
+
+	private String getSource() throws IOException {
+		StringBuilder source = new StringBuilder();
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+		String line;
+		while ((line = in.readLine()) != null) {
+			source.append(line);
+			source.append("\n");
+		}
+		return source.toString();
+	}
+
+	private void log(String message) {
+		System.err.println(message);
 	}
 
 	public static void main(String[] args) {
+		try {
+			new VisualStudioCode().run(args);
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+			System.exit(1);
+		}
 	}
 
 }

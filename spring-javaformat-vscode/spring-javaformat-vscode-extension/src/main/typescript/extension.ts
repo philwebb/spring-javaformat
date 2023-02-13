@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import SpringJavaFormatter from './SpringDocumentFormattingEditProvider'
+import SpringDocumentFormattingEditProvider from './SpringDocumentFormattingEditProvider'
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Activated spring-javaformat extension')
@@ -11,9 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
           scheme: 'file',
         },
       ],
-      new SpringJavaFormatter()
+      new SpringDocumentFormattingEditProvider()
     )
   )
 }
-
-export function deactivate() {}
