@@ -1,57 +1,62 @@
-import {
-  DocumentFormattingEditProvider,
-  TextDocument,
-  FormattingOptions,
-  CancellationToken,
-  ProviderResult,
-  TextEdit,
-  Range,
-  Disposable,
-} from 'vscode'
+import path = require('path')
+import vscode = require('vscode')
+import childprocess = require('child_process')
 
-import { ChildProcess, spawn } from 'child_process'
-import { resolve } from 'path'
+const JAR_PATH = path.resolve(__dirname, '..', 'runtime', 'spring-java-format.jar')
 
-const JAR_PATH = resolve(__dirname, '..', 'runtime', 'spring-java-format.jar')
+export default class SpringDocumentFormattingEditProvider implements vscode.DocumentFormattingEditProvider {
+  provideDocumentFormattingEdits(
+    document: vscode.TextDocument,
+    options: vscode.FormattingOptions,
+    token: vscode.CancellationToken
+  ): vscode.ProviderResult<vscode.TextEdit[]> {
+    if (vscode.window.visibleTextEditors.every((editor) => editor.document.fileName !== document.fileName)) {
+      return []
+    }
+    return this.runFormatter(document, token).then(
+      (edits) => edits,
+      (err) => {
+        if (err) {
+          console.log(err)
+          return Promise.reject(`Check the console in dev tools to find errors when formatting spring-javaformat`)
+        }
+      }
+    )
+  }
 
-export default class SpringDocumentFormattingEditProvider implements DocumentFormattingEditProvider, Disposable {
-  process: ChildProcess
-
-  constructor() {
-    console.log(JAR_PATH)
-    const process = spawn(`java -jar ${JAR_PATH}`)
-    process.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`)
-    })
-    process.on('error', () => console.log('Error'))
-    process.on('close', (code) => {
-      if (code !== 0) {
-        console.log(`ps process exited with code ${code}`)
+  private runFormatter(document: vscode.TextDocument, token: vscode.CancellationToken): Promise<vscode.TextEdit[]> {
+    return new Promise<vscode.TextEdit[]>((resolve, reject) => {
+      console.log(`formatting ${document.uri} using spring-javaformat`)
+      let stdout = ''
+      let stderr = ''
+      const cwd = path.dirname(document.fileName)
+      const args = ['-jar', JAR_PATH]
+      const process = childprocess.spawn('java', args, { cwd })
+      token.onCancellationRequested(() => !process.killed && process.kill())
+      process.stdout.setEncoding('utf8')
+      process.stdout.on('data', (data) => (stdout += data))
+      process.stderr.on('data', (data) => (stderr += data))
+      process.on('error', (err) => {
+        console.log(`spring-javaformat returned error ${err}`)
+        if (err && (<any>err).code === 'ENOENT') {
+          return reject(`failed to find run spring-javaformat due to missing 'java' executable`)
+        }
+      })
+      process.on('close', (code) => {
+        if (code !== 0) {
+          console.log(`spring-javaformat returned error code ${code}`)
+          return reject(stderr)
+        }
+        console.log('spring-javaformat returned without error')
+        const fileStart = new vscode.Position(0, 0)
+        const fileEnd = document.lineAt(document.lineCount - 1).range.end
+        const textEdits: vscode.TextEdit[] = [new vscode.TextEdit(new vscode.Range(fileStart, fileEnd), stdout)]
+        return resolve(textEdits)
+      })
+      if (process.pid) {
+        console.log('sending document data to spring-javaformat')
+        process.stdin.end(document.getText())
       }
     })
-    this.process = process
-  }
-
-  provideDocumentFormattingEdits(document: TextDocument): ProviderResult<TextEdit[]> {
-    if (document.languageId === 'java') {
-      return this.formatJava(document)
-    }
-    return []
-  }
-
-  private async formatJava(document: TextDocument): Promise<Array<TextEdit>> {
-    console.log(document.fileName)
-    const source = document.getText()
-    const formatted = this.format(source)
-    const range = new Range(document.positionAt(0), document.positionAt(source.length))
-    return [TextEdit.replace(range, formatted)]
-  }
-
-  private format(source: string): string {
-    return ''
-  }
-
-  dispose() {
-    this.process.kill()
   }
 }

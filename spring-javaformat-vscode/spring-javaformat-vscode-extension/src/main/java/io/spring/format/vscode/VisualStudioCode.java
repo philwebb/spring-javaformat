@@ -41,27 +41,13 @@ public final class VisualStudioCode {
 	}
 
 	private void run(String[] args) throws Exception {
-		if (args.length != 1) {
-			throw new RuntimeException("Incorrect number of args");
-		}
-		String file = args[0];
-		log(String.format("Loading formatter for '%s'", file));
-		JavaFormatConfig config = JavaFormatConfig.findFrom(new File(file));
+		File location = new File(".").getAbsoluteFile();
+		log(String.format("Loading formatter from location '%s'", location));
+		JavaFormatConfig config = JavaFormatConfig.findFrom(location);
 		Formatter formatter = new Formatter(config);
 		String source = getSource();
-		format(formatter, source);
-		System.out.println(source);
-	}
-
-	private String format(Formatter formatter, String source) throws Exception {
-		IDocument document = new Document(source);
-		formatter.format(source).apply(document);
-		String formattedContent = document.get();
-		return trimTrailingWhitespace(formattedContent);
-	}
-
-	private String trimTrailingWhitespace(String content) {
-		return TRAILING_WHITESPACE.matcher(content).replaceAll("");
+		String formatted = format(formatter, source);
+		System.out.println(formatted);
 	}
 
 	private String getSource() throws IOException {
@@ -73,6 +59,17 @@ public final class VisualStudioCode {
 			source.append("\n");
 		}
 		return source.toString();
+	}
+
+	private String format(Formatter formatter, String source) throws Exception {
+		IDocument document = new Document(source);
+		formatter.format(source).apply(document);
+		String formattedContent = document.get();
+		return trimTrailingWhitespace(formattedContent);
+	}
+
+	private String trimTrailingWhitespace(String content) {
+		return TRAILING_WHITESPACE.matcher(content).replaceAll("");
 	}
 
 	private void log(String message) {
