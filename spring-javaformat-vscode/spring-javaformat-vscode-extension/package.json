@@ -24,7 +24,7 @@
     "watch": "tsc -b ./ -watch",
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js",
-    "package": "vsce package"
+    "package": "vsce package --out ./target/vsix/spring-javaformat.vsix"
   },
   "devDependencies": {
     "@types/glob": "^8.0.1",
