@@ -20,8 +20,8 @@
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "tsc -b ./",
+    "watch": "tsc -watch -b ./",
 		"pretest": "npm run compile",
 		"test": "node ./out/test/runTest.js",    
     "package": "vsce package"

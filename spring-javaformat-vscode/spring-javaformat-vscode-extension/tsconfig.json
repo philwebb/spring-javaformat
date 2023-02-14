@@ -1,12 +1,11 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2020",
-    "outDir": "out",
-    "lib": ["ES2020"],
-    "sourceMap": true,
-    "rootDirs": ["src/main/typescript", "src/test/typescript"],
-    "strict": true
-  },
-  "exclude": ["node", "node_modules", ".vscode-test"]
+  "files": [],
+  "references": [
+    {
+      "path": "./src/main/typescript"
+    },
+    {
+      "path": "./src/test/typescript"
+    }
+  ],
 }
