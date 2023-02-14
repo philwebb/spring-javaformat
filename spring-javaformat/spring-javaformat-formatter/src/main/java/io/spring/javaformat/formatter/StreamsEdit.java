@@ -16,6 +16,7 @@
 
 package io.spring.javaformat.formatter;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
@@ -48,7 +49,12 @@ public class StreamsEdit extends Edit {
 	 * @param encoding the source encoding
 	 */
 	public void writeTo(OutputStream outputStream, Charset encoding) {
-		writeTo(new OutputStreamWriter(outputStream, encoding));
+		try (OutputStreamWriter writer = new OutputStreamWriter(outputStream, encoding)) {
+			writeTo(writer);
+		}
+		catch (IOException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 
 	/**
