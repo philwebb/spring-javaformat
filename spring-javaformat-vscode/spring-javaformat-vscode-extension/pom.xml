@@ -75,7 +75,7 @@
 							</filters>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>io.spring.format.vscode.VisualStudioCode</mainClass>
+									<mainClass>io.spring.format.vscode.VisualStudioCodeFormatter</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

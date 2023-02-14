@@ -5,7 +5,8 @@
     "outDir": "out",
     "lib": ["ES2020"],
     "sourceMap": true,
-    "rootDir": "src/main/typescript",
+    "rootDirs": ["src/main/typescript", "src/test/typescript"],
     "strict": true
-  }
+  },
+  "exclude": ["node", "node_modules", ".vscode-test"]
 }
