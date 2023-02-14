@@ -2,8 +2,6 @@ import * as path from 'path'
 import * as Mocha from 'mocha'
 import * as glob from 'glob'
 
-console.log('running222')
-
 export function run(): Promise<void> {
   const mocha = new Mocha({
     ui: 'tdd',

@@ -46,7 +46,8 @@ public final class VisualStudioCodeFormatter {
 	public static void main(String[] args) {
 		try {
 			new VisualStudioCodeFormatter().run(args);
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
 			ex.printStackTrace();
 			System.exit(1);
 		}
