@@ -140,7 +140,6 @@
 								<artifact>
 									<file>${project.build.directory}/spring-javaformat.vsix</file>
 									<type>vsix</type>
-									<classifier>vsix</classifier>
 								</artifact>
 							</artifacts>
 						</configuration>
