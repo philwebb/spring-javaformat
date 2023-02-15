@@ -597,10 +597,11 @@
 	</dependencies>
 	<modules>
 		<module>spring-javaformat</module>
-		<module>spring-javaformat-maven</module>
-		<module>spring-javaformat-gradle</module>
 		<module>spring-javaformat-eclipse</module>
+		<module>spring-javaformat-gradle</module>
 		<module>spring-javaformat-intellij-idea</module>
+		<module>spring-javaformat-maven</module>
+		<module>spring-javaformat-vscode</module>
 	</modules>
 	<profiles>
 		<profile>
