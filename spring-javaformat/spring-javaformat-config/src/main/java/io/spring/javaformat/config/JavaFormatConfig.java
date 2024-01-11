@@ -32,7 +32,7 @@ public interface JavaFormatConfig {
 	/**
 	 * The default {@link JavaFormatConfig}.
 	 */
-	JavaFormatConfig DEFAULT = of(JavaBaseline.V11, IndentationStyle.TABS);
+	JavaFormatConfig DEFAULT = of(JavaBaseline.V17, IndentationStyle.TABS);
 
 	/**
 	 * Java JDK baseline version expected be used when formatting.

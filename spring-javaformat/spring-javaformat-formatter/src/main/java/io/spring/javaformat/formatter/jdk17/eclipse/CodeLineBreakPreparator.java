@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.spring.javaformat.formatter.jdk11.eclipse;
+package io.spring.javaformat.formatter.jdk17.eclipse;
 
 import io.spring.javaformat.eclipse.jdt.jdk11.core.dom.ASTNode;
 import io.spring.javaformat.eclipse.jdt.jdk11.core.dom.ASTVisitor;

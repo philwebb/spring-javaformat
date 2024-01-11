@@ -23,14 +23,14 @@ import io.spring.javaformat.config.JavaBaseline;
 import io.spring.javaformat.config.JavaFormatConfig;
 
 /**
- * Eclipse {@link CodeFormatter} for Spring formatting with spaces.
+ * Eclipse {@link CodeFormatter} for Spring formatting with tabs.
  *
  * @author Phillip Webb
  */
-public class SpringCodeFormatterJdk11Spaces extends SpringCodeFormatter {
+public class SpringCodeFormatterJdk17Tabs extends SpringCodeFormatter {
 
-	public SpringCodeFormatterJdk11Spaces() {
-		super(JavaFormatConfig.of(JavaBaseline.V11, IndentationStyle.SPACES));
+	public SpringCodeFormatterJdk17Tabs() {
+		super(JavaFormatConfig.of(JavaBaseline.V17, IndentationStyle.TABS));
 	}
 
 }

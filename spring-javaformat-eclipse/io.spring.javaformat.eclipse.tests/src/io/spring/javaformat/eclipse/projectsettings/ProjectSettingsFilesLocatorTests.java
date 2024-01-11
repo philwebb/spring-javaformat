@@ -84,7 +84,7 @@ public class ProjectSettingsFilesLocatorTests {
 			Properties properties = new Properties();
 			properties.load(content);
 			assertThat(properties.get("org.eclipse.jdt.core.javaFormatter"))
-				.isEqualTo("io.spring.javaformat.eclipse.formatter.jdk11.tabs");
+				.isEqualTo("io.spring.javaformat.eclipse.formatter.jdk17.tabs");
 		}
 	}
 

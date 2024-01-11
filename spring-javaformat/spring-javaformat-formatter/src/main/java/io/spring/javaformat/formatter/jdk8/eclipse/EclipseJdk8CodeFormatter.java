@@ -25,7 +25,7 @@ import io.spring.javaformat.formatter.eclipse.EclipseCodeFormatter;
 import io.spring.javaformat.formatter.eclipse.Options;
 
 /**
- * Internal delegate JDK 11 baseline {@link EclipseCodeFormatter} to apply Spring
+ * Internal delegate JDK 8 baseline {@link EclipseCodeFormatter} to apply Spring
  * {@literal formatter.prefs} and add {@link Preparator Preparators}.
  *
  * @author Phillip Webb

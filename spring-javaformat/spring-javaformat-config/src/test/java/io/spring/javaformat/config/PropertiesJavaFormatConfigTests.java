@@ -33,7 +33,7 @@ class PropertiesJavaFormatConfigTests {
 	void getJavaBaselineWhenNoPropertyReturnsJava11() {
 		Properties properties = new Properties();
 		PropertiesJavaFormatConfig config = new PropertiesJavaFormatConfig(properties);
-		assertThat(config.getJavaBaseline()).isEqualTo(JavaBaseline.V11);
+		assertThat(config.getJavaBaseline()).isEqualTo(JavaBaseline.V17);
 	}
 
 	@Test

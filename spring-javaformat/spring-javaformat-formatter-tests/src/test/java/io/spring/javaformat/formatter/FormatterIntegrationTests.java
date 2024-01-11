@@ -54,16 +54,16 @@ public class FormatterIntegrationTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "11", "17" })
+	@ValueSource(strings = { "17" })
 	void formatCodeWithV11BaselineCanFormatOn11OrHigher(String version) throws Exception {
-		runFormatter(JavaBaseline.V11, version);
+		runFormatter(JavaBaseline.V17, version);
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = "8")
 	void formatCodeWithV11BaselineCannotFormatOn8(String version) throws Exception {
 		assertThatExceptionOfType(ContainerLaunchException.class)
-			.isThrownBy(() -> runFormatter(JavaBaseline.V11, version));
+			.isThrownBy(() -> runFormatter(JavaBaseline.V17, version));
 	}
 
 	private void runFormatter(JavaBaseline baseline, String version) throws IOException, Exception {

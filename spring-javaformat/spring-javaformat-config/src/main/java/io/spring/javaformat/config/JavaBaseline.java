@@ -29,8 +29,8 @@ public enum JavaBaseline {
 	V8,
 
 	/**
-	 * Use JDK 11+ or higher compatible formatter.
+	 * Use JDK 17+ or higher compatible formatter.
 	 */
-	V11
+	V17
 
 }
