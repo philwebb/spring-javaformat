@@ -1,0 +1,37 @@
+name: 'Build'
+description: 'Builds the project, optionally publishing it to a local deployment repository'
+inputs:
+  publish:
+    required: false
+    default: false
+    description: 'Whether to publish artifacts ready for deployment to Artifactory'
+outputs:
+  version:
+    description: 'The version that was built'
+    value: ${{ steps.read-version.outputs.version }}
+runs:
+  using: composite
+  steps:
+  - name: Set Up Java
+    uses: actions/setup-java@99b8673ff64fbf99d8d325f52d9a5bdedb8483e9 # v4.2.1
+    with:
+      distribution: 'liberica'
+      java-version: '17'
+      cache: maven
+  - name: Build
+    id: build
+    if: ${{ !inputs.publish }}
+    shell: bash
+    run: ./mvnw clean install --batch-mode --no-transfer-progress --update-snapshots
+  - name: Build and Publish
+    id: build-and-publish
+    if: ${{ inputs.publish }}
+    shell: bash
+    run: ./mvnw clean deploy --batch-mode --no-transfer-progress --update-snapshots -DaltDeploymentRepository=distribution::file://$(pwd)/distribution-repository
+  - name: Read Version From gradle.properties
+    id: read-version
+    shell: bash
+    run: |
+        version=$(sed -n 's/version=\(.*\)/\1/p' gradle.properties)
+        echo "Version is $version"
+        echo "version=$version" >> $GITHUB_OUTPUT
