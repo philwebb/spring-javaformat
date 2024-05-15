@@ -1,0 +1,18 @@
+name: 'Versions'
+description: 'Deduce the version to stage and the next SNAPSHOT version'
+inputs:
+  releaseType:
+    description: 'The type of release being performed'
+outputs:
+  stageVersion:
+    description: 'The version should be staged'
+    value: 'foo'
+  nextVersion:
+    description: 'The version to use for the next SNAPSHOT'
+    value: 'bar'
+runs:
+  using: composite
+  steps:
+    - name: Install Utilities
+      run: |
+        sudo apt-get -y install libxml2-utils

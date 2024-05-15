@@ -11,8 +11,9 @@ jobs:
     name: Stage Release
     runs-on: ubuntu-latest
     steps:
-    - name: Install Utilities
-      run: |
-        sudo apt-get -y install libxml2-utils
     - name: Check Out Code
       uses: actions/checkout@v4
+    - name: Debug
+      run: |
+        echo "Env: ${{ github.event.inputs.environment }}" 
+        echo "Env: ${{ github.event.inputs.environment.name }}"         
