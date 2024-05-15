@@ -1,8 +1,10 @@
 name: Release
-on:
-  push:
-    tags:
-      - v.*
+on: workflow_dispatch
+inputs:
+  environment:
+    description: 'Environment to release to'
+    type: environment
+    required: true
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
