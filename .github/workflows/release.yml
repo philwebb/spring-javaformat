@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to release to'
+        description: 'Release Environment'
         type: environment
         required: true
 concurrency:
