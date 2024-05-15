@@ -1,6 +1,8 @@
 name: 'Versions'
 description: 'Deduce the version to stage and the next SNAPSHOT version'
 inputs:
+  current-version:
+    description: 'The current version number'
   release-type:
     description: 'The type of release being performed'
 outputs:
@@ -17,14 +19,9 @@ runs:
       shell: bash
       run: |
         sudo apt-get -y install libxml2-utils
-    - name: Dunno
+    - name: Deduce Versions
       shell: bash
+      run: ${{ github.action_path }}/deduce-versions.sh
       env:
+        CURRENT_VERSION: "${{ inputs.current-version }}"
         RELEASE_TYPE: "${{ inputs.release-type }}"
-      run: |
-        echo "${RELEASE_TYPE}"
-        pwd
-        ls -l
-    - name: More
-      shell: bash
-      run: ${{ github.action_path }}/versions.sh
