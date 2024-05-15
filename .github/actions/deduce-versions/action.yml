@@ -19,7 +19,10 @@ runs:
         sudo apt-get -y install libxml2-utils
     - name: Dunno
       shell: bash
+      working-directory: ${{ github.workspace }}/PROJECT_FOLDER
       env:
         RELEASE_TYPE: "${{ inputs.release-type }}"
       run: |
         echo "${RELEASE_TYPE}"
+        pwd
+        ls -l
