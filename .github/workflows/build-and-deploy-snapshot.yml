@@ -1,8 +1,10 @@
 name: Build and Deploy Snapshot
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
+inputs:
+  environment:
+    description: 'Environment to run tests against'
+    type: environment
+    required: true
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
