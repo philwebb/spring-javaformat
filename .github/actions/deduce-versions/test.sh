@@ -1,1 +1,1 @@
-./test/libs/bats/bin/bats test/*.bats
+../.bats/libs/bats/bin/bats test/*.bats

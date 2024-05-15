@@ -1,7 +1,7 @@
 #!./test/libs/bats/bin/bats
 
-load 'libs/bats-support/load'
-load 'libs/bats-assert/load'
+load '../../.bats/libs/bats-support/load'
+load '../../.bats/libs/bats-assert/load'
 
 source "$PWD/deduce-versions.sh"
 

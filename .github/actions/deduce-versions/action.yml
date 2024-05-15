@@ -21,7 +21,7 @@ runs:
         sudo apt-get -y install libxml2-utils
     - name: Deduce Versions
       shell: bash
-      run: ${{ github.action_path }}/deduce-versions.sh
+      run: . ${{ github.action_path }}/deduce-versions.sh; deduce_versions
       env:
         CURRENT_VERSION: "${{ inputs.current-version }}"
         RELEASE_TYPE: "${{ inputs.release-type }}"

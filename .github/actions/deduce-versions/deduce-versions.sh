@@ -94,7 +94,10 @@ bump_version_number() {
 	echo "${bumpedVersion}${suffix}"
 }
 
-
+# Deduce versions
+deduce_versions() {
+    echo "Hello"
+}
 
 # if [[ $RELEASE_TYPE = "M" ]]; then
 # 	stageVersion=$( get_next_milestone_release $snapshotVersion)
