@@ -13,7 +13,10 @@ jobs:
     steps:
     - name: Check Out Code
       uses: actions/checkout@v4
+    - name: Deduce Versions
+      uses: ./.github/actions/deduce-versions
+      with:
+        release-type: ${{ inputs.environment }}
     - name: Debug
       run: |
         echo "Env: ${{ github.event.inputs.environment }}" 
-        echo "Env: ${{ github.event.inputs.environment.name }}"         

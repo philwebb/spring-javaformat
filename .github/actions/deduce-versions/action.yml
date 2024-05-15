@@ -1,13 +1,13 @@
 name: 'Versions'
 description: 'Deduce the version to stage and the next SNAPSHOT version'
 inputs:
-  releaseType:
+  release-type:
     description: 'The type of release being performed'
 outputs:
-  stageVersion:
+  stage-version:
     description: 'The version should be staged'
     value: 'foo'
-  nextVersion:
+  next-version:
     description: 'The version to use for the next SNAPSHOT'
     value: 'bar'
 runs:
@@ -16,3 +16,6 @@ runs:
     - name: Install Utilities
       run: |
         sudo apt-get -y install libxml2-utils
+    - name: Dunno
+      run: |
+        echo "${{ github.event.inputs.release-type }}"
