@@ -25,3 +25,6 @@ runs:
         echo "${RELEASE_TYPE}"
         pwd
         ls -l
+    - name: More
+      shell: bash
+      run: ${{ github.action_path }}/versions.sh
