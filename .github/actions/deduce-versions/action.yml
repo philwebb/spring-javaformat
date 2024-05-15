@@ -14,8 +14,10 @@ runs:
   using: composite
   steps:
     - name: Install Utilities
+      shell: bash
       run: |
         sudo apt-get -y install libxml2-utils
     - name: Dunno
+      shell: bash
       run: |
         echo "${{ github.event.inputs.release-type }}"
