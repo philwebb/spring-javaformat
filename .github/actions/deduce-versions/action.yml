@@ -19,5 +19,7 @@ runs:
         sudo apt-get -y install libxml2-utils
     - name: Dunno
       shell: bash
+      env:
+        RELEASE_TYPE: "${{ inputs.release-type }}"
       run: |
-        echo "${{ github.event.inputs.release-type }}"
+        echo "${RELEASE_TYPE}"
