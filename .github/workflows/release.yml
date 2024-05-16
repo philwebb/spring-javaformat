@@ -28,8 +28,8 @@ jobs:
       uses: ./.github/actions/stage
       with:
         current-version: ${{ steps.get-version.outputs.current-version }}
-        release-version: ${{ steps.deduce-versions.outputs.release-version }}" 
-        next-version: ${{ steps.deduce-versions.outputs.next-version }}" 
+        release-version: ${{ steps.deduce-versions.outputs.release-version }}
+        next-version: ${{ steps.deduce-versions.outputs.next-version }}
     - name: Debug
       run: |
         echo "Env: ${{ github.event.inputs.environment }}" 
