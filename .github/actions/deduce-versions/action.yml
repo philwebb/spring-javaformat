@@ -1,18 +1,14 @@
-name: 'Versions'
+name: 'Deduce Versions'
 description: 'Deduce the version to stage and the next SNAPSHOT version'
 inputs:
   current-version:
-    description: 'The current version number'
     required: true
   release-type:
-    description: 'The type of release being performed'
     required: true
 outputs:
   release-version:
-    description: 'The version should be released'
     value: ${{ steps.deduce-versions.outputs.release-version }}
   next-version:
-    description: 'The version to use for the next SNAPSHOT'
     value: ${{ steps.deduce-versions.outputs.next-version }}
 runs:
   using: composite

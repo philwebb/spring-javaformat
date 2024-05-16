@@ -96,21 +96,21 @@ bump_version_number() {
 
 # Deduce versions
 deduce_versions() {
-	[[ -n $GITHUB_OUTPUT ]] || { echo "missing GITHUB_OUTPUT environment variable" >&2; return 1; }
-	[[ -n $CURRENT_VERSION ]] || { echo "missing CURRENT_VERSION environment variable" >&2; return 1; }
-	[[ -n $RELEASE_TYPE ]] || { echo "missing RELEASE_TYPE environment variable" >&2; return 1; }
+	[[ -n ${GITHUB_OUTPUT} ]] || { echo "missing GITHUB_OUTPUT environment variable" >&2; return 1; }
+	[[ -n ${CURRENT_VERSION} ]] || { echo "missing CURRENT_VERSION environment variable" >&2; return 1; }
+	[[ -n ${RELEASE_TYPE} ]] || { echo "missing RELEASE_TYPE environment variable" >&2; return 1; }
     if [[ ${RELEASE_TYPE,,} = "milestone" ]]; then
-	    releaseVersion=$( get_next_milestone_release $CURRENT_VERSION)
-	    nextVersion=$CURRENT_VERSION
+	    releaseVersion=$( get_next_milestone_release ${CURRENT_VERSION})
+	    nextVersion=${CURRENT_VERSION}
     elif [[ ${RELEASE_TYPE,,} = "release-candidate" ]]; then
-	    releaseVersion=$( get_next_rc_release $CURRENT_VERSION)
-	    nextVersion=$CURRENT_VERSION
+	    releaseVersion=$( get_next_rc_release ${CURRENT_VERSION})
+	    nextVersion=${CURRENT_VERSION}
     elif [[ ${RELEASE_TYPE,,} = "release" ]]; then
-	    releaseVersion=$( get_next_release $CURRENT_VERSION)
-	    nextVersion=$( bump_version_number $CURRENT_VERSION)
+	    releaseVersion=$( get_next_release ${CURRENT_VERSION})
+	    nextVersion=$( bump_version_number ${CURRENT_VERSION})
     else
-	    echo "Unknown release type '$RELEASE_TYPE'" >&2; exit 1;
+	    echo "Unknown release type '${RELEASE_TYPE}'" >&2; exit 1;
     fi
-    echo "release-version=$releaseVersion" >> "$GITHUB_OUTPUT"
-    echo "next-version=$nextVersion" >> "$GITHUB_OUTPUT"
+    echo "release-version=${releaseVersion}" >> "$GITHUB_OUTPUT"
+    echo "next-version=${nextVersion}" >> "$GITHUB_OUTPUT"
 }
