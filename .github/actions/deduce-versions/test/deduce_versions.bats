@@ -6,7 +6,7 @@ load '../../.bats/libs/bats-assert/load'
 source "$PWD/deduce-versions.sh"
 
 teardown() {
-    rm .githuboutput
+    rm .githuboutput | true
 }
 
 @test "deduce_versions() when 'milestone' should export versions" {
@@ -46,6 +46,39 @@ teardown() {
 	assert [ "$status" -eq 0 ]
     assert [ "$STAGE_VERSION" = "1.2.3" ]
     assert [ "$NEXT_VERSION" = "1.2.4-SNAPSHOT" ]
+}
+
+@test "deduce_versions() when no GITHUB_OUTPUT should fail" {
+    CURRENT_VERSION="1.2.3-SNAPSHOT"
+    RELEASE_TYPE="release"
+    run deduce_versions
+	assert [ "$status" -eq 1 ]
+  	assert_output "missing GITHUB_OUTPUT environment variable"
+}
+
+@test "deduce_versions() when no CURRENT_VERSION should fail" {
+    GITHUB_OUTPUT=".githuboutput"
+    RELEASE_TYPE="release"
+    run deduce_versions
+	assert [ "$status" -eq 1 ]
+  	assert_output "missing CURRENT_VERSION environment variable"
+}
+
+@test "deduce_versions() when no RELEASE_TYPE should fail" {
+    GITHUB_OUTPUT=".githuboutput"
+    CURRENT_VERSION="1.2.3-SNAPSHOT"
+    run deduce_versions
+	assert [ "$status" -eq 1 ]
+  	assert_output "missing RELEASE_TYPE environment variable"
+}
+
+@test "deduce_versions() when wrong RELEASE_TYPE should fail" {
+    GITHUB_OUTPUT=".githuboutput"
+    CURRENT_VERSION="1.2.3-SNAPSHOT"
+    RELEASE_TYPE="nope"
+    run deduce_versions
+	assert [ "$status" -eq 1 ]
+  	assert_output "Unknown release type 'nope'"
 }
 
 mock_git_repo() {

@@ -109,7 +109,7 @@ deduce_versions() {
 	    stageVersion=$( get_next_release $CURRENT_VERSION)
 	    nextVersion=$( bump_version_number $CURRENT_VERSION)
     else
-	    echo "Unknown release type $RELEASE_TYPE" >&2; exit 1;
+	    echo "Unknown release type '$RELEASE_TYPE'" >&2; exit 1;
     fi
     echo "STAGE_VERSION=$stageVersion" >> "$GITHUB_OUTPUT"
     echo "NEXT_VERSION=$nextVersion" >> "$GITHUB_OUTPUT"
