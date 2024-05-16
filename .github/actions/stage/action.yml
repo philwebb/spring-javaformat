@@ -9,6 +9,7 @@ inputs:
     required: true
 outputs:
   distribution-repository:
+    value: ${{ steps.stage.outputs.distribution-repository }}
 runs:
   using: composite
   steps:
