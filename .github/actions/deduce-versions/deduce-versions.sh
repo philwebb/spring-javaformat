@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get the next milestone release for the given number by inspecting current tags
 get_next_milestone_release() {
@@ -96,21 +96,21 @@ bump_version_number() {
 
 # Deduce versions
 deduce_versions() {
-    echo "Hello"
+	[[ -n $GITHUB_OUTPUT ]] || { echo "missing GITHUB_OUTPUT environment variable" >&2; return 1; }
+	[[ -n $CURRENT_VERSION ]] || { echo "missing CURRENT_VERSION environment variable" >&2; return 1; }
+	[[ -n $RELEASE_TYPE ]] || { echo "missing RELEASE_TYPE environment variable" >&2; return 1; }
+    if [[ ${RELEASE_TYPE,,} = "milestone" ]]; then
+	    stageVersion=$( get_next_milestone_release $CURRENT_VERSION)
+	    nextVersion=$CURRENT_VERSION
+    elif [[ ${RELEASE_TYPE,,} = "release-candidate" ]]; then
+	    stageVersion=$( get_next_rc_release $CURRENT_VERSION)
+	    nextVersion=$CURRENT_VERSION
+    elif [[ ${RELEASE_TYPE,,} = "release" ]]; then
+	    stageVersion=$( get_next_release $CURRENT_VERSION)
+	    nextVersion=$( bump_version_number $CURRENT_VERSION)
+    else
+	    echo "Unknown release type $RELEASE_TYPE" >&2; exit 1;
+    fi
+    echo "STAGE_VERSION=$stageVersion" >> "$GITHUB_OUTPUT"
+    echo "NEXT_VERSION=$nextVersion" >> "$GITHUB_OUTPUT"
 }
-
-# if [[ $RELEASE_TYPE = "M" ]]; then
-# 	stageVersion=$( get_next_milestone_release $snapshotVersion)
-# 	nextVersion=$snapshotVersion
-# elif [[ $RELEASE_TYPE = "RC" ]]; then
-# 	stageVersion=$( get_next_rc_release $snapshotVersion)
-# 	nextVersion=$snapshotVersion
-# elif [[ $RELEASE_TYPE = "RELEASE" ]]; then
-# 	stageVersion=$( get_next_release $snapshotVersion)
-# 	nextVersion=$( bump_version_number $snapshotVersion)
-# else
-# 	echo "Unknown release type $RELEASE_TYPE" >&2; exit 1;
-# fi
-
-
-
