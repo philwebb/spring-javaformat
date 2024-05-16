@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'spring-io/spring-javaformat' }}
     steps:
-    - name: Set Up and Check Out
-      uses: ./.github/actions/setup-and-checkout
+    - name: Check Out
+      uses: actions/checkout@v4
+    - name: Set Up
+      uses: ./.github/actions/setup
     - name: Build
       run: ./mvnw clean deploy --batch-mode --no-transfer-progress --update-snapshots -DaltDeploymentRepository=distribution::file://$(pwd)/distribution-repository
     - name: Deploy

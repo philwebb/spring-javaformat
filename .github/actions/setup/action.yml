@@ -1,5 +1,4 @@
 name: 'Setup'
-description: 'Setup common tools and utilities'
 runs:
   using: composite
   steps:
@@ -12,5 +11,3 @@ runs:
       distribution: 'liberica'
       java-version: '17'
       cache: maven
-  - name: Check Out Code
-    uses: actions/checkout@v4

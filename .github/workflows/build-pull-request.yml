@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'spring-projects/spring-boot' }}
     steps:
-    - name: Set Up and Checkout
-      uses: ./.github/actions/setup-and-checkout
+    - name: Check Out
+      uses: actions/checkout@v4
+    - name: Set Up
+      uses: ./.github/actions/setup
     - name: Build
       run: ./mvnw clean install --batch-mode --no-transfer-progress --update-snapshots

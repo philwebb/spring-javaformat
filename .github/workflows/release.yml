@@ -11,8 +11,10 @@ jobs:
     name: Stage
     runs-on: ubuntu-latest
     steps:
-    - name: Set Up and Checkout
-      uses: ./.github/actions/setup-and-checkout
+    - name: Check Out
+      uses: actions/checkout@v4
+    - name: Set Up
+      uses: ./.github/actions/setup
     - name: Get Current Version
       id: get-version
       run: echo "current-version=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_OUTPUT
