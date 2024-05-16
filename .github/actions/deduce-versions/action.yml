@@ -10,14 +10,15 @@ inputs:
 outputs:
   release-version:
     description: 'The version should be released'
-    value: 'foo'
+    value: ${{ steps.deduce-versions.outputs.release-version }}
   next-version:
     description: 'The version to use for the next SNAPSHOT'
-    value: 'bar'
+    value: ${{ steps.deduce-versions.outputs.next-version }}
 runs:
   using: composite
   steps:
     - name: Deduce Versions
+      id: deduce-versions
       shell: bash
       run: . ${{ github.action_path }}/deduce-versions.sh; deduce_versions
       env:
