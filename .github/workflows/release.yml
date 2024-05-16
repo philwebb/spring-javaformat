@@ -36,6 +36,7 @@ jobs:
       run: echo "Push Here"
   promote:
     name: "Promote (${{ inputs.environment }})"
+    needs: stage
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
