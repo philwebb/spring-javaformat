@@ -6,8 +6,8 @@ inputs:
   release-type:
     description: 'The type of release being performed'
 outputs:
-  stage-version:
-    description: 'The version should be staged'
+  release-version:
+    description: 'The version should be released'
     value: 'foo'
   next-version:
     description: 'The version to use for the next SNAPSHOT'
@@ -15,10 +15,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Install Utilities
-      shell: bash
-      run: |
-        sudo apt-get -y install libxml2-utils
     - name: Deduce Versions
       shell: bash
       run: . ${{ github.action_path }}/deduce-versions.sh; deduce_versions

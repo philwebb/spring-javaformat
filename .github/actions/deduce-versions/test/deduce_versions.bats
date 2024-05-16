@@ -16,10 +16,10 @@ teardown() {
     CURRENT_VERSION="1.2.3-SNAPSHOT"
     RELEASE_TYPE="milestone"
     run deduce_versions
-    source .githuboutput
+    readarray -t githuboutput < .githuboutput
 	assert [ "$status" -eq 0 ]
-    assert [ "$STAGE_VERSION" = "1.2.3-M2" ]
-    assert [ "$NEXT_VERSION" = "1.2.3-SNAPSHOT" ]
+    assert [ "${githuboutput[0]}" = "release-version=1.2.3-M2" ]
+    assert [ "${githuboutput[1]}" = "next-version=1.2.3-SNAPSHOT" ]
 }
 
 @test "deduce_versions() when 'release-candidate' should export versions" {
@@ -29,10 +29,10 @@ teardown() {
     CURRENT_VERSION="1.2.3-SNAPSHOT"
     RELEASE_TYPE="release-candidate"
     run deduce_versions
-    source .githuboutput
+    readarray -t githuboutput < .githuboutput
 	assert [ "$status" -eq 0 ]
-    assert [ "$STAGE_VERSION" = "1.2.3-RC2" ]
-    assert [ "$NEXT_VERSION" = "1.2.3-SNAPSHOT" ]
+    assert [ "${githuboutput[0]}" = "release-version=1.2.3-RC2" ]
+    assert [ "${githuboutput[1]}" = "next-version=1.2.3-SNAPSHOT" ]
 }
 
 @test "deduce_versions() when 'release' should export versions" {
@@ -42,10 +42,10 @@ teardown() {
     CURRENT_VERSION="1.2.3-SNAPSHOT"
     RELEASE_TYPE="release"
     run deduce_versions
-    source .githuboutput
+    readarray -t githuboutput < .githuboutput
 	assert [ "$status" -eq 0 ]
-    assert [ "$STAGE_VERSION" = "1.2.3" ]
-    assert [ "$NEXT_VERSION" = "1.2.4-SNAPSHOT" ]
+    assert [ "${githuboutput[0]}" = "release-version=1.2.3" ]
+    assert [ "${githuboutput[1]}" = "next-version=1.2.4-SNAPSHOT" ]
 }
 
 @test "deduce_versions() when no GITHUB_OUTPUT should fail" {

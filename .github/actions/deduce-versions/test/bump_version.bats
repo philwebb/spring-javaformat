@@ -48,8 +48,6 @@ source "$PWD/deduce-versions.sh"
 @test "bump_version_number() when missing argument should fail" {
 	run bump_version_number
 	assert_output "missing bump_version_number() argument"
-	echo "status = ${status}"
-  	echo "output = ${output}"
 	assert [ "$status" -eq 1 ]
 }
 
