@@ -23,7 +23,7 @@ jobs:
       id: deduce-versions
       uses: ./.github/actions/deduce-versions
       with:
-        current-version: ${{ steps.get-version.outputs.curren-version }}
+        current-version: ${{ steps.get-version.outputs.current-version }}
         release-type: ${{ inputs.environment }}
     - name: Debug
       run: |

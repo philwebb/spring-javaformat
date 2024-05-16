@@ -3,8 +3,10 @@ description: 'Deduce the version to stage and the next SNAPSHOT version'
 inputs:
   current-version:
     description: 'The current version number'
+    required: true
   release-type:
     description: 'The type of release being performed'
+    required: true
 outputs:
   release-version:
     description: 'The version should be released'
