@@ -8,7 +8,7 @@ on:
         required: true
 jobs:
   stage:
-    name: Stage
+    name: "Stage ${{ inputs.environment }}"
     runs-on: ubuntu-latest
     steps:
     - name: Check Out
