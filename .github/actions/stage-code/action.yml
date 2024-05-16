@@ -1,5 +1,5 @@
-name: 'Stage'
-description: 'Stage the release'
+name: 'Stage '
+description: 'Stage Code'
 inputs:
   current-version:
     required: true

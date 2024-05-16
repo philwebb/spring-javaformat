@@ -10,4 +10,4 @@ runs:
     with:
       distribution: 'liberica'
       java-version: '17'
-      cache: maven
+      cache: [ maven, gradle ]
