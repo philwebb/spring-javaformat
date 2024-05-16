@@ -25,7 +25,7 @@ jobs:
         current-version: ${{ steps.get-version.outputs.current-version }}
         release-type: ${{ inputs.environment }}
     - name: Stage Code
-      uses: ./.github/actions/stage
+      uses: ./.github/actions/stage-code
       with:
         current-version: ${{ steps.get-version.outputs.current-version }}
         release-version: ${{ steps.deduce-versions.outputs.release-version }}
