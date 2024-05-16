@@ -11,12 +11,22 @@ jobs:
     name: Stage Release
     runs-on: ubuntu-latest
     steps:
+    - name: Install Utilities
+      shell: bash
+      run: sudo apt-get -y install libxml2-utils
     - name: Check Out Code
       uses: actions/checkout@v4
+    - name: Get Current Version
+      id: get-version
+      run: echo "current-version=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_OUTPUT
     - name: Deduce Versions
+      id: deduce-versions
       uses: ./.github/actions/deduce-versions
       with:
+        current-version: ${{ steps.get-version.outputs.curren-version }}
         release-type: ${{ inputs.environment }}
     - name: Debug
       run: |
         echo "Env: ${{ github.event.inputs.environment }}" 
+        echo "Release: ${{ steps.deduce-versions.outputs.release-version }}" 
+        echo "Next: ${{ steps.deduce-versions.outputs.next-version }}" 
