@@ -1,0 +1,16 @@
+name: 'Setup'
+description: 'Setup common tools and utilities'
+runs:
+  using: composite
+  steps:
+  - name: Set Up Utilities
+    shell: bash
+    run: sudo apt-get -y install libxml2-utils
+  - name: Set Up Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: 'liberica'
+      java-version: '17'
+      cache: maven
+  - name: Check Out Code
+    uses: actions/checkout@v4

@@ -8,14 +8,11 @@ on:
         required: true
 jobs:
   stage:
-    name: Stage Release
+    name: Stage
     runs-on: ubuntu-latest
     steps:
-    - name: Install Utilities
-      shell: bash
-      run: sudo apt-get -y install libxml2-utils
-    - name: Check Out Code
-      uses: actions/checkout@v4
+    - name: Set Up and Checkout
+      uses: ./.github/actions/setup-and-checkout
     - name: Get Current Version
       id: get-version
       run: echo "current-version=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_OUTPUT
