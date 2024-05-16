@@ -1,9 +1,9 @@
 repository=$(pwd)/distribution-repository
 
 echo "Staging ${STAGE_VERSION} (next version will be ${NEXT_VERSION})"
-./mvnw versions:set -DnewVersion=${STAGE_VERSION} -DgenerateBackupPoms=false
-./mvnw org.eclipse.tycho:tycho-versions-plugin:update-eclipse-metadata
-./mvnw --projects io.spring.javaformat:spring-javaformat-vscode-extension -P '!formatter-dependencies' antrun:run@update-version frontend:install-node-and-npm frontend:npm@update-package-lock
+./mvnw versions:set -DnewVersion=${STAGE_VERSION} -DgenerateBackupPoms=false --batch-mode --no-transfer-progress
+./mvnw org.eclipse.tycho:tycho-versions-plugin:update-eclipse-metadata --batch-mode --no-transfer-progress
+./mvnw --projects io.spring.javaformat:spring-javaformat-vscode-extension -P '!formatter-dependencies' antrun:run@update-version frontend:install-node-and-npm frontend:npm@update-package-lock --batch-mode --no-transfer-progress
 
 git config user.name "Spring Builds" > /dev/null
 git config user.email "spring-builds@users.noreply.github.com" > /dev/null
@@ -16,9 +16,9 @@ git tag -a "v${STAGE_VERSION}" -m"Release v${STAGE_VERSION}" > /dev/null
 git reset --hard HEAD^ > /dev/null
 if [[ ${NEXT_VERSION} != ${CURRENT_VERSION} ]]; then
 	echo "Setting next development version (v${NEXT_VERSION})"
-	./mvnw versions:set -DnewVersion=${NEXT_VERSION} -DgenerateBackupPoms=false
-	./mvnw org.eclipse.tycho:tycho-versions-plugin:update-eclipse-metadata
-	./mvnw --projects io.spring.javaformat:spring-javaformat-vscode-extension -P '!formatter-dependencies' antrun:run@update-version frontend:npm@update-package-lock
+	./mvnw versions:set -DnewVersion=${NEXT_VERSION} -DgenerateBackupPoms=false --batch-mode --no-transfer-progress
+	./mvnw org.eclipse.tycho:tycho-versions-plugin:update-eclipse-metadata --batch-mode --no-transfer-progress
+	./mvnw --projects io.spring.javaformat:spring-javaformat-vscode-extension -P '!formatter-dependencies' antrun:run@update-version frontend:npm@update-package-lock --batch-mode --no-transfer-progress
 	sed -i "s/:release-version:.*/:release-version: ${STAGE_VERSION}/g" README.adoc
 	sed -i "s/spring-javaformat-gradle-plugin:.*/spring-javaformat-gradle-plugin:${NEXT_VERSION}\"\)/g" samples/spring-javaformat-gradle-sample/build.gradle
 	sed -i "s/spring-javaformat-checkstyle:.*/spring-javaformat-checkstyle:${NEXT_VERSION}\"\)/g" samples/spring-javaformat-gradle-sample/build.gradle
