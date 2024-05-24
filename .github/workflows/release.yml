@@ -1,5 +1,5 @@
 name: Release
-run-name: 'Release of "${{ github.ref_name }}" branch by ${{ github.actor }} to "${{ inputs.environment }}" environment'
+run-name: "Release of '${{ github.ref_name }}' to '${{ inputs.environment }}' environment branch by ${{ github.actor }}"
 on: 
     workflow_dispatch:
       inputs:
@@ -9,7 +9,7 @@ on:
           required: true
 jobs:
   stage:
-    name: 'Stage to "${{ inputs.environment }}" environment'
+    name: "Stage to '${{ inputs.environment }}' environment"
     runs-on: ubuntu-latest
     steps:
     - name: Duuno
