@@ -12,8 +12,8 @@ jobs:
     name: "Stage to '${{ inputs.environment }}' environment"
     runs-on: ubuntu-latest
     steps:
-    - name: Duuno
-      run: echo "Dunno"
+    - name: Staging
+      run: echo "Staging"
   promote:
     name: "Promote to '${{ inputs.environment }}' environment"
     needs: stage
