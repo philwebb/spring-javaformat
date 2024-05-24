@@ -47,3 +47,25 @@ jobs:
       run: echo "Promote Here ${RELEASE_VERSION}"
       env:
         RELEASE_VERSION: ${{needs.stage.outputs.release-version}}
+    - name: Sync to Maven Central
+      run: echo "Sync Here"
+  create-github-release:
+    name: Create GitHub Release
+    needs: promote
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Out Code
+      uses: actions/checkout@v4
+    - name: Create GitHub Release
+      uses: ./.github/actions/create-github-release
+      with:
+        milestone: ${{ needs.build-and-stage-release.outputs.version }}
+        token: ${{ secrets.GH_ACTIONS_REPO_TOKEN }}  
+  publish-eclipse-update-site:
+    name: Publish Eclipse Update Site
+    needs: promote
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: echo "OK"
+

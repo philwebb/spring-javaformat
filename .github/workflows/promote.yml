@@ -1,0 +1,9 @@
+name: Promote
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to promote'
+        required: true
+jobs:
+  promote:
