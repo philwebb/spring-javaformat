@@ -12,11 +12,37 @@ jobs:
     name: "Stage"
     runs-on: ubuntu-latest
     steps:
-    - name: Staging
-      run: echo "Staging"
+    - name: Check Out
+      uses: actions/checkout@v4
+    - name: Set Up
+      uses: ./.github/actions/setup
+    - name: Get Current Version
+      id: get-version
+      run: echo "current-version=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_OUTPUT
+    - name: Deduce Versions
+      id: deduce-versions
+      uses: ./.github/actions/deduce-versions
+      with:
+        current-version: ${{ steps.get-version.outputs.current-version }}
+        release-type: ${{ inputs.environment }}
+    - name: Stage Code
+      uses: ./.github/actions/stage-code
+      if: 'false' # FIXME
+      with:
+        current-version: ${{ steps.get-version.outputs.current-version }}
+        release-version: ${{ steps.deduce-versions.outputs.release-version }}
+        next-version: ${{ steps.deduce-versions.outputs.next-version }}
+    - name: Deploy to Staging
+      run: echo "Deploy to Staging Here"
+    - name: Push
+      run: echo "Push Here"
+    outputs:
+      release-version: ${{ steps.deduce-versions.outputs.release-version }}  
   promote:
     name: "Promote"
     needs: stage
     uses: ./.github/workflows/promote.yml
     with:
       environment: ${{ inputs.environment }}
+      version: ${{needs.stage.outputs.release-version}}
+      build-number: ${{ github.run_number }}

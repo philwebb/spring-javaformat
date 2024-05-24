@@ -1,17 +1,31 @@
 name: Promote
-run-name: Promote of '${{ github.ref_name }}' branch by ${{ github.actor }} to '${{ inputs.environment }}' environment
+run-name: 'Promote of ''${{ github.ref_name }}'' branch by ${{ github.actor }} to ''${{ inputs.environment }}'' environment'
 on: 
   workflow_call:
     inputs:
       environment:
         type: string
         required: true
+      version:
+        type: string
+        required: true
+      build-number:
+        type: string
+        required: true
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment'
+        description: Environment
         type: environment
         required: true        
+      version:
+        description: The version number to promote
+        type: string
+        required: true
+      build-number:
+        description: The build number to promote
+        type: string
+        required: true
 jobs:
   dunno:
     environment: ${{ inputs.environment }}
@@ -20,9 +34,5 @@ jobs:
     steps:
     - name: Duuno
       run: echo "Dunno"
-  more:
-    name: "More stuff"
-    runs-on: ubuntu-latest
-    steps:
-    - name: Duuno
-      run: echo "Dunno"
+    - name: More
+      run: echo "More"
