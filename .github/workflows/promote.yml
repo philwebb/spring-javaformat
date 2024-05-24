@@ -4,17 +4,17 @@ on:
   workflow_call:
     inputs:
       environment:
-        description: 'Release Environment'
         type: string
         required: true
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Release Environment'
+        description: 'Environment'
         type: environment
         required: true        
 jobs:
   dunno:
+    environment: ${{ inputs.environment }}
     name: "Dunno (${{ inputs.environment }})"
     runs-on: ubuntu-latest
     steps:
