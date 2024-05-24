@@ -1,5 +1,5 @@
 name: Stage
-run-name: Stage $${ github.ref_name }} to ${{ inputs.environment }}
+run-name: Stage of ${{ github.ref_name }} by ${{ github.actor }} to '${{ inputs.environment }}' environment
 on: 
     workflow_call:
       inputs:

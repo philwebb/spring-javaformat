@@ -1,5 +1,5 @@
 name: Release
-run-name: Release $${ github.ref_name }} to ${{ inputs.environment }}
+run-name: Release of ${{ github.ref_name }} by ${{ github.actor }} to '${{ inputs.environment }}' environment
 on: 
     workflow_dispatch:
       inputs:
