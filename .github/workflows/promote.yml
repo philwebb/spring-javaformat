@@ -1,0 +1,16 @@
+name: Promote
+run-name: Promote $${ github.ref_name }} to ${{ inputs.environment }}
+on: 
+    workflow_call:
+      inputs:
+        environment:
+          description: 'Release Environment'
+          type: environment
+          required: true
+jobs:
+  dunno:
+    name: "Dunno (${{ inputs.environment }})"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Duuno
+      run: echo "Dunno"
