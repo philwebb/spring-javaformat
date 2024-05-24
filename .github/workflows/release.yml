@@ -1,12 +1,12 @@
 name: Release
 run-name: "Release of '${{ github.ref_name }}' branch to '${{ inputs.environment }}' environment by ${{ github.actor }}"
 on: 
-    workflow_dispatch:
-      inputs:
-        environment:
-          description: 'Release Environment'
-          type: environment
-          required: true
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Release Environment'
+        type: environment
+        required: true
 jobs:
   stage:
     name: "Stage to '${{ inputs.environment }}' environment"

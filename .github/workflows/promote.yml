@@ -1,12 +1,12 @@
 name: Promote
 run-name: Promote of '${{ github.ref_name }}' branch by ${{ github.actor }} to '${{ inputs.environment }}' environment
 on: 
-    workflow_call:
-      inputs:
-        environment:
-          description: 'Release Environment'
-          type: environment
-          required: true
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Release Environment'
+        type: string
+        required: true
 jobs:
   dunno:
     name: "Dunno (${{ inputs.environment }})"
