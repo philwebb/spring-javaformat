@@ -1,5 +1,5 @@
 name: Release
-run-name: "Release of '${{ github.ref_name }}' to '${{ inputs.environment }}' environment branch by ${{ github.actor }}"
+run-name: "Release of '${{ github.ref_name }}' branch to '${{ inputs.environment }}' environment by ${{ github.actor }}"
 on: 
     workflow_dispatch:
       inputs:
@@ -14,3 +14,5 @@ jobs:
     steps:
     - name: Duuno
       run: echo "Dunno"
+  promote:
+    uses: ./.github/workflows/promote.yml
