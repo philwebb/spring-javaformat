@@ -14,3 +14,9 @@ jobs:
     steps:
     - name: Duuno
       run: echo "Dunno"
+  more:
+    name: "More stuff"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Duuno
+      run: echo "Dunno"
