@@ -9,13 +9,13 @@ on:
         required: true
 jobs:
   stage:
-    name: "Stage to '${{ inputs.environment }}' environment"
+    name: "Stage"
     runs-on: ubuntu-latest
     steps:
     - name: Staging
       run: echo "Staging"
   promote:
-    name: "Promote to '${{ inputs.environment }}' environment"
+    name: "Promote"
     needs: stage
     uses: ./.github/workflows/promote.yml
     with:
