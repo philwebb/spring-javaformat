@@ -16,3 +16,5 @@ jobs:
       run: echo "Dunno"
   promote:
     uses: ./.github/workflows/promote.yml
+    with:
+      environment: ${{ inputs.environment }}
