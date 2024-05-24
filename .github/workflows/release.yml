@@ -15,6 +15,8 @@ jobs:
     - name: Duuno
       run: echo "Dunno"
   promote:
+    name: "Promote to '${{ inputs.environment }}' environment"
+    needs: stage
     uses: ./.github/workflows/promote.yml
     with:
       environment: ${{ inputs.environment }}
