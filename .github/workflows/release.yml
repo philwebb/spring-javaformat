@@ -27,7 +27,6 @@ jobs:
         release-type: ${{ inputs.environment }}
     - name: Stage Code
       uses: ./.github/actions/stage-code
-      if: 'false' # FIXME
       with:
         current-version: ${{ steps.get-version.outputs.current-version }}
         release-version: ${{ steps.deduce-versions.outputs.release-version }}
