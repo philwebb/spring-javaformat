@@ -1,15 +1,16 @@
 name: Release
-run-name: 'Release of ''${{ github.ref_name }}'' branch to ''${{ inputs.environment }}'' environment by ${{ github.actor }}'
+run-name: >-
+  Release of '${{ github.ref_name }}' branch to '${{ inputs.environment }}' environment by ${{ github.actor }}
 on: 
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment'
+        description: Environment
         type: environment
         required: true
 jobs:
   stage:
-    name: "Stage"
+    name: Stage
     runs-on: ubuntu-latest
     steps:
     - name: Check Out
@@ -38,7 +39,7 @@ jobs:
     outputs:
       release-version: ${{ steps.deduce-versions.outputs.release-version }}  
   promote:
-    name: "Promote"
+    name: Promote
     needs: stage
     uses: ./.github/workflows/promote.yml
     with:

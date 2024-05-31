@@ -1,5 +1,6 @@
 name: Promote
-run-name: 'Promote of ''${{ github.ref_name }}'' branch by ${{ github.actor }} to ''${{ inputs.environment }}'' environment'
+run-name: >-
+  Promote of version ${{ inputs.version }} (build number ${{ inputs.build-number}}) by ${{ github.actor }} to '${{ inputs.environment }}' environment'
 on: 
   workflow_call:
     inputs:
@@ -27,12 +28,10 @@ on:
         type: string
         required: true
 jobs:
-  dunno:
+  promote:
     environment: ${{ inputs.environment }}
-    name: "Dunno (${{ inputs.environment }})"
+    name: Promote
     runs-on: ubuntu-latest
     steps:
-    - name: Duuno
-      run: echo "Dunno"
-    - name: More
-      run: echo "More"
+    - name: Promote
+      run: echo "Promote Here"
