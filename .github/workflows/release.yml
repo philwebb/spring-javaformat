@@ -1,5 +1,5 @@
 name: Release
-run-name: "Release of '${{ github.ref_name }}' branch to '${{ inputs.environment }}' environment by ${{ github.actor }}"
+run-name: 'Release of ''${{ github.ref_name }}'' branch to ''${{ inputs.environment }}'' environment by ${{ github.actor }}'
 on: 
   workflow_dispatch:
     inputs:
