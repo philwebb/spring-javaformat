@@ -34,4 +34,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Promote
-      run: echo "Promote Here"
+      run: echo "Promote happens here"
