@@ -35,7 +35,7 @@ jobs:
     - name: Deploy to Staging
       run: echo "Deploy to Staging Here"
     - name: Push
-      run: git push orgin HEAD --tags
+      run: git push origin HEAD --tags
     outputs:
       release-version: ${{ steps.deduce-versions.outputs.release-version }}  
   promote:
