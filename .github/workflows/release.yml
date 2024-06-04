@@ -27,23 +27,13 @@ jobs:
         current-version: ${{ steps.get-version.outputs.current-version }}
         release-type: ${{ inputs.environment }}
     - name: Stage Code
-      id: stage-code
       uses: ./.github/actions/stage-code
       with:
         current-version: ${{ steps.get-version.outputs.current-version }}
         release-version: ${{ steps.deduce-versions.outputs.release-version }}
         next-version: ${{ steps.deduce-versions.outputs.next-version }}
     - name: Deploy to Staging
-      uses: spring-io/artifactory-deploy-action@v0.0.1
-      with:
-        folder: ${{ steps.stage-code.outputs.distribution-repository }}
-        uri: 'https://repo.spring.io'
-        repository: 'libs-staging-local'
-        build-name: ${{ format('spring-javaformat-{0}', steps.deduce-versions.outputs.release-version)}}
-        username: ${{ secrets.ARTIFACTORY_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-        signing-key: ${{ secrets.GPG_PRIVATE_KEY }}
-        signing-passphrase: ${{ secrets.GPG_PASSPHRASE }}      
+      run: echo "Deploy to Staging Here"
     - name: Push
       run: git push orgin HEAD --tags
     outputs:
