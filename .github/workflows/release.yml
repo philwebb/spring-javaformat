@@ -45,7 +45,7 @@ jobs:
         signing-key: ${{ secrets.GPG_PRIVATE_KEY }}
         signing-passphrase: ${{ secrets.GPG_PASSPHRASE }}      
     - name: Push
-      run: git push --tags
+      run: git push orgin HEAD --tags
     outputs:
       release-version: ${{ steps.deduce-versions.outputs.release-version }}  
   promote:
